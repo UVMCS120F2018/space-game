@@ -7,11 +7,13 @@
 
 #include <iostream>
 #include <vector>
-#include <optional>
+#include <experimental/optional>
+
+using namespace std::experimental;
 
 // shorthand for coordinate tuple
 typedef std::tuple<double, double, double> coordinate;
-typedef std::optional<std::string> optString;
+typedef optional<std::string> optString;
 
 /** StarSystem class
  *
