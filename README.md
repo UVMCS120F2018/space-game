@@ -3,19 +3,19 @@
 Ideas/todo
 
 goals:
-gravity
-shoot stuff like asteroids
-get blown up by asteroids if they hit you
-other ships
--- steal their stuff
-star system map
-moving with player's perspective
+* gravity
+* shoot stuff like asteroids
+* get blown up by asteroids if they hit you
+* other ships
+** steal their stuff
+* star system map
+* moving with player's perspective
 
 
 game play loop:
-start somewhere with items like fuel/ammo (unlimited/energy weapons?)
---fuel meter
---refueling needs to be implemented
+* start somewhere with items like fuel/ammo (unlimited/energy weapons?)
+** fuel meter
+** refueling needs to be implemented
 
 
 what components do we need:
