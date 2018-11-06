@@ -1,0 +1,32 @@
+//
+// Created by Ethan Nerney on 11/2/18.
+//
+
+#ifndef SPACE_STUFF_STARSYSTEM_H
+#define SPACE_STUFF_STARSYSTEM_H
+
+
+#include <vector>
+#include "Entity.h"
+#include "StarBoi.h"
+
+class StarSystem: public Entity {
+private:
+    int particles;
+    int width;
+    int height;
+    int rate;
+    int increment;
+
+    std::vector<StarBoi> starBois;
+
+public:
+    StarSystem(int particleNums, int particleRate, int boundsWidth, int boundsHeight, position2D::Vector2D point);
+
+    void draw() override;
+    void update() override;
+
+};
+
+
+#endif //SPACE_STUFF_STARSYSTEM_H
