@@ -12,17 +12,19 @@
 #include <math.h>
 #include <iostream>
 namespace colorGraphics {
+    // RGB Color is a struct for a standard color
     struct RGBColor {
         double r;
         double g;
         double b;
-
+        // RGB Constructor that takes doubles as the rgb values, for ease in graphics
         RGBColor(double red, double green, double blue) {
             r = red;
             g = green;
             b = blue;
         }
 
+        // RGB Constructor that takes ints (0-255) as rgb values, and converts them to doubles
         RGBColor(int red, int green, int blue) {
             r = red / 255.;
             g = green / 255.;
@@ -30,12 +32,14 @@ namespace colorGraphics {
         }
     };
 
+    // RGBA Color is a struct for a color with transparency
     struct RGBAColor {
         double r;
         double g;
         double b;
         double a;
 
+        // RGBA Constructor that takes doubles for rgb and a double for the opacity
         RGBAColor(double red, double green, double blue, double alpha) {
             r = red;
             g = green;
@@ -43,6 +47,7 @@ namespace colorGraphics {
             a = alpha;
         }
 
+        // RGBA Constructor that takes ints (0-255) for rgb and a double (0.0-1.0) for the opacity
         RGBAColor(int red, int green, int blue, double alpha) {
             r = red / 255.;
             g = green / 255.;
@@ -51,6 +56,7 @@ namespace colorGraphics {
         }
     };
 
+    // Constants
     const RGBColor BLACK(0,0,0);
     const RGBColor RED(1.,0.,0.);
     const RGBColor BLUE(0., 0., 1.);
@@ -60,37 +66,48 @@ namespace colorGraphics {
 }
 
 namespace position2D {
+    // Vector2D is a struct that has an x value, a y value, and a rotation angle. It can be used for a point or a (physics)
+    // vector for direction of motion
     struct Vector2D {
         double x;
         double y;
-
         double rotationAngle;
 
+        // Constructor for an x and y position/direction with no angle of rotation
         Vector2D(double x, double y): Vector2D(x,y,0) {}
 
+        // Constructor for an x and y position/direction with an angle of rotation
         Vector2D(double x, double y, double rot) {
             this->x = x;
             this->y = y;
             rotationAngle = fmod(rot, 360);
         }
 
+        // Multiplying a vector by a scalar returns a vector with each aspect of the original vector being multiplied
+        // by that scalar (m stands for multiple)
         friend Vector2D operator *(Vector2D v, double m) {
             return Vector2D(v.x * m, v.y * m, v.rotationAngle * m);
         }
 
+        // Multiplying two vectors together returns a vector with each aspect being the product of the original two
+        // vectors' aspects
         friend Vector2D operator *(Vector2D v, Vector2D v2) {
             return Vector2D(v.x * v2.x, v.y * v2.y, v.rotationAngle * v2.rotationAngle);
         }
 
+        // Dividing a vector by a scalar returns a vector with each aspect of the original vector being divided by that
+        // scalar (d stands for dividend)
         friend Vector2D operator /(Vector2D v, double d) {
             return Vector2D(v.x / d, v.y / d, v.rotationAngle / d);
         }
 
-
+        // Adding two vectors together returns a vector with each aspect of the vector being the sum of the original
+        // two vectors' aspects
         friend Vector2D operator +(Vector2D v1, Vector2D v2) {
             return Vector2D(v1.x + v2.x, v1.y + v2.y, v1.rotationAngle + v2.rotationAngle);
         }
 
+        // Incrementing a vector by another vector is similar to adding them togeter
         Vector2D& operator +=(Vector2D v) {
             this->x += v.x;
             this->y += v.y;
@@ -98,10 +115,12 @@ namespace position2D {
             return *this;
         }
 
+        // if two vectors have all the same values for their aspects they are equal
         friend bool operator ==(Vector2D lhs, Vector2D rhs) {
             return (lhs.x == rhs.x) and (lhs.y == rhs.y) and (lhs.rotationAngle == rhs.rotationAngle);
         }
 
+        // output operator displaying the x, y, and angle values
         friend std::ostream& operator <<(std::ostream &outs, const Vector2D &rhs) {
             outs << "X: " << rhs.x << " Y: " << rhs.y << " A: " << rhs.rotationAngle;
             return outs;
@@ -109,7 +128,7 @@ namespace position2D {
 
     };
 
-
+    // Constants (multiply them by scalars if you want them to move more than one point/degree at a time)
     const Vector2D UP(0, -1);
     const Vector2D RIGHT(1, 0);
     const Vector2D DOWN(0,1);
@@ -123,6 +142,7 @@ namespace position2D {
 }
 
 namespace position3D {
+    // We're really not gonna touch this
     struct Vector3D {
         int x,y,z;
         int rotationX,rotationY,rotationZ;
