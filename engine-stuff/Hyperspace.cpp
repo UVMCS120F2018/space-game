@@ -7,7 +7,7 @@
 
 using namespace position2D;
 
-StarSystem::StarSystem(int particleNums, int particleRate, int boundsWidth, int boundsHeight,
+HyperSpace::HyperSpace(int particleNums, int particleRate, int boundsWidth, int boundsHeight,
                        position2D::Vector2D point): Entity(point) {
     particles = particleNums;
     rate = particleRate;
@@ -15,7 +15,7 @@ StarSystem::StarSystem(int particleNums, int particleRate, int boundsWidth, int 
     height = boundsHeight;
 }
 
-void StarSystem::update() {
+void HyperSpace::update() {
     for (StarBoi &s: starBois) {
         s.update();
     }
@@ -43,7 +43,7 @@ void StarSystem::update() {
     }
 }
 
-void StarSystem::draw() {
+void HyperSpace::draw() {
     for (StarBoi &s: starBois) {
         s.draw();
     }

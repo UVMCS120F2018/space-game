@@ -10,7 +10,7 @@
 #include "Entity.h"
 #include "StarBoi.h"
 
-class StarSystem: public Entity {
+class HyperSpace: public Entity {
 private:
     int particles;
     int width;
@@ -21,7 +21,7 @@ private:
     std::vector<StarBoi> starBois;
 
 public:
-    StarSystem(int particleNums, int particleRate, int boundsWidth, int boundsHeight, position2D::Vector2D point);
+    HyperSpace(int particleNums, int particleRate, int boundsWidth, int boundsHeight, position2D::Vector2D point);
 
     void draw() override;
     void update() override;
