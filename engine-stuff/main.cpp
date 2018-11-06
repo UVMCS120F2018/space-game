@@ -10,7 +10,7 @@
 #include "Quadrangle.h"
 #include "MyQuad.h"
 #include "StarBoi.h"
-#include "StarSystem.h"
+#include "Hyperspace.h"
 #include "ParticleSystem.h"
 #include "Fire.h"
 #include "PhysicsCircle.h"

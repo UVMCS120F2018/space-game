@@ -2,7 +2,7 @@
 // Created by Ethan Nerney on 11/2/18.
 //
 
-#include "StarSystem.h"
+#include "Hyperspace.h"
 #include "RandNum.h"
 
 using namespace position2D;
