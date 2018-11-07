@@ -15,10 +15,6 @@ void Shape2D::setCenter(position2D::Vector2D &center) {
     centerPoint = center;
 }
 
-position2D::Vector2D Shape2D::getCenter() {
-    return centerPoint;
-}
-
 colorGraphics::RGBColor Shape2D::getColor() {
     return shapeColor;
 }

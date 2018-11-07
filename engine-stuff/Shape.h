@@ -23,11 +23,13 @@ public:
     // Sets the color of the shape
     void setColor(colorGraphics::RGBColor &col);
 
-    //
+    // returns the area of the shape
     virtual double getArea() = 0;
 
+    // returns the perimeter of the shape
     virtual double getPerimeter() = 0;
 
+    // returns the RGBColor assigned to the shape
     colorGraphics::RGBColor getColor();
 
     //virtual bool doesIntersect(Circle &c);

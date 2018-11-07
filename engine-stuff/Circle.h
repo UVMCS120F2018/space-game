@@ -12,6 +12,7 @@ class Circle: public Shape2D {
 private:
     int radius;
 public:
+    // takes a radius, centerpoint, and color
     Circle(int r, position2D::Vector2D center, colorGraphics::RGBColor color);
 
     void setRadius(int r);
@@ -23,6 +24,7 @@ public:
 
     void draw() override;
 
+    // This returns a random point on the edge of the circle for use in
     position2D::Vector2D getPointOnEdge();
     position2D::Vector2D getPointOnEdge(int arcAngle);
 

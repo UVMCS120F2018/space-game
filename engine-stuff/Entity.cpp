@@ -6,10 +6,12 @@
 
 Entity::Entity(position2D::Vector2D point): centerPoint(point) {}
 
+// the center point gets incremented by the vector translated
 void Entity::translate(position2D::Vector2D v) {
     centerPoint += v;
 }
 
+// the center point gets set to the vector passed through
 void Entity::setPosition(position2D::Vector2D v) {
     centerPoint = v;
 }
