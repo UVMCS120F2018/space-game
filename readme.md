@@ -33,3 +33,39 @@ prioritization of components:
 * star system
 * movement
 * everything else listed above
+
+
+
+
+## Screen Stuff
+Screens we need:
+* Start Menu
+* Game
+* Map
+* Hyperspace
+* End Screen
+
+it'll look like
+``` objectivec
+enum GameScreen {START, GAME, MAP, HYPER, END};
+```
+And in the display method, we'll have something like
+```objectivec
+enum GameScreen {START, GAME, MAP, HYPER, END};
+GameScreen screen;
+switch (screen) {
+    case START:
+        drawStart();
+        break;
+    case GAME:
+        drawGame();
+        break;
+}
+```
+etc. etc.
+
+In start menu there should be buttons
+* Start Game
+    * Switches the current screen to the game screen
+* Exit
+    * Exits the program with a status code of 0
