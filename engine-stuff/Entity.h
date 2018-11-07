@@ -17,16 +17,22 @@ protected:
     position2D::Vector2D centerPoint;
 
 public:
+    // Constructor that takes a center point for the entity
     Entity(position2D::Vector2D point);
 
+    // Sets the position of the entity to any point instantly
     void setPosition(position2D::Vector2D v);
 
+    // moves the entity from it's current point over by v amount
     void translate(position2D::Vector2D v);
 
+    // returns the center point of the entity as a vector2d
     position2D::Vector2D getCenter();
 
+    // gets called every frame
     virtual void update();
 
+    // abstract method for drawing
     virtual void draw() = 0;
 };
 

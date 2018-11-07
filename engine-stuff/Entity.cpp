@@ -4,13 +4,10 @@
 
 #include "Entity.h"
 
-Entity::Entity(position2D::Vector2D point): centerPoint(point) {
-}
+Entity::Entity(position2D::Vector2D point): centerPoint(point) {}
 
 void Entity::translate(position2D::Vector2D v) {
-    centerPoint.x += v.x;
-    centerPoint.y += v.y;
-    centerPoint.rotationAngle += v.rotationAngle;
+    centerPoint += v;
 }
 
 void Entity::setPosition(position2D::Vector2D v) {

@@ -26,7 +26,8 @@ private:
 
     std::vector<Particle> particleEntities;
 
-    colorGraphics::RGBColor partColor;
+    //colorGraphics::RGBColor partColor;
+    colorGraphics::RGBGradient partColor;
 public:
     ParticleSystem(int particleNum, int generationRate, int length, int arcAngle, int arcHeight, int partSize,
                    colorGraphics::RGBColor particleColor, position2D::Vector2D centerPoint);

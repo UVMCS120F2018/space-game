@@ -13,14 +13,17 @@ class Shape2D: public Entity {
 private:
     colorGraphics::RGBColor shapeColor;
 public:
+    // Takes center point and color, center gets sent to the superclass, color gets stored in shape
     Shape2D(position2D::Vector2D center, colorGraphics::RGBColor col);
 
-    position2D::Vector2D getCenter();
-
+    // redundant method, does the same as setPosition
+    // TODO: Refactor code that uses setCenter so we can use just setPosition instead
     void setCenter(position2D::Vector2D &center);
 
+    // Sets the color of the shape
     void setColor(colorGraphics::RGBColor &col);
 
+    //
     virtual double getArea() = 0;
 
     virtual double getPerimeter() = 0;

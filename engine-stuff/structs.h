@@ -11,6 +11,8 @@
  */
 #include <math.h>
 #include <iostream>
+#include "RandNum.h"
+
 namespace colorGraphics {
     // RGB Color is a struct for a standard color
     struct RGBColor {
@@ -30,6 +32,16 @@ namespace colorGraphics {
             g = green / 255.;
             b = blue / 255.;
         }
+
+
+        friend RGBColor operator !(RGBColor c) {
+            return RGBColor(1 - c.r, 1 - c.g, 1 - c.b);
+        }
+
+        friend RGBColor operator +(RGBColor lhs, RGBColor rhs) {
+            return RGBColor(lhs.r + rhs.r, lhs.g + rhs.g, lhs.b + rhs.b);
+        }
+
     };
 
     // RGBA Color is a struct for a color with transparency
@@ -56,9 +68,27 @@ namespace colorGraphics {
         }
     };
 
+    struct RGBGradient {
+        RGBColor point1;
+        RGBColor point2;
+
+        // Constructor that takes the first and last colors in the gradient
+        RGBGradient(RGBColor startPoint, RGBColor endPoint): point1(startPoint), point2(endPoint) {
+        }
+
+        RGBColor getColor() {
+            RandNum r;
+            double percent = r.getInt(100) / 100.0;
+
+            return RGBColor(point1.r + (point2.r - point1.r) * percent, point1.g + (point2.g - point1.g) * percent, point1.b + (point2.b - point1.b) * percent);
+        }
+    };
+
     // Constants
     const RGBColor BLACK(0,0,0);
     const RGBColor RED(1.,0.,0.);
+    const RGBColor ORANGE(255, 165, 0);
+    const RGBColor YELLOW(255,255,0);
     const RGBColor BLUE(0., 0., 1.);
     const RGBColor GREEN(0., 1., 0.);
     const RGBColor WHITE(1.,1.,1.);
@@ -120,11 +150,23 @@ namespace position2D {
             return (lhs.x == rhs.x) and (lhs.y == rhs.y) and (lhs.rotationAngle == rhs.rotationAngle);
         }
 
+        // difference of two vectors
+        friend Vector2D operator-(Vector2D lhs, Vector2D rhs) {
+            return Vector2D(lhs.x - rhs.x, lhs.y - rhs.y, lhs.rotationAngle - rhs.rotationAngle);
+        }
+
+        // negation of one vector
+        friend Vector2D operator-(Vector2D v) {
+            return Vector2D(-v.x, -v.y, -v.rotationAngle);
+        }
+
         // output operator displaying the x, y, and angle values
         friend std::ostream& operator <<(std::ostream &outs, const Vector2D &rhs) {
             outs << "X: " << rhs.x << " Y: " << rhs.y << " A: " << rhs.rotationAngle;
             return outs;
         }
+
+
 
     };
 

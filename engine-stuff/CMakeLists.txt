@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.7)
 set(CMAKE_CXX_STANDARD 17)
-project(space_stuff)
+project(space-game)
 
 if (WIN32)
     set(FREEGLUT_INCLUDE_DIRS "C:/Program\ Files/Common\ Files/freeglut/include")
