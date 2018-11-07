@@ -35,7 +35,7 @@ Fire fire(50, GRAY, RED, RGBColor(255,165,0), RGBColor(255,255,0), Vector2D(250,
 PhysicsCircle circle;
 Circle c2(25, Vector2D(450,250),colorGraphics::GREEN);
 PhysicsAspect p2(&c2, 1, Circle(25,Vector2D(450,250),colorGraphics::GREEN));
-StarSystem space(500, 10, 1000, 500, Vector2D(500, 250));
+HyperSpace space(500, 10, 1000, 500, Vector2D(500, 250));
 
 
 void init() {
