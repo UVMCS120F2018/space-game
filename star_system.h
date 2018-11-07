@@ -32,6 +32,8 @@ private:
     long population;
 public:
     //// constructors
+    /*default*/
+    StarSystem();
     /** simple constructor
      *
      * creates a star system object with the given name and location, and all other misc fields uninitialized.

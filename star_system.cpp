@@ -52,6 +52,8 @@ void readStarSystemCsv(vector<StarSystem> &systems) {
     datafile.close();
 }
 
+StarSystem::StarSystem(){};
+
 StarSystem::StarSystem(std::string name, coordinate location) {
     this->name = std::move(name);
     std::tie(this->x, this->y, this->z) = location;
