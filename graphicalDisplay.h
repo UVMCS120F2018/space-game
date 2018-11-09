@@ -40,6 +40,8 @@ void keyboard(unsigned char key, int x, int y);
 // Trap and process special keyboard events
 void keyboardSpecial(int key, int x, int y);
 
+void keyboardSpecialDown(int key, int x, int y);
+
 // Handle "mouse cursor moved" events
 void cursor(int x, int y);
 

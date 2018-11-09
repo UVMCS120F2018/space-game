@@ -18,12 +18,21 @@ private:
     float xMotion = 0;
     float yMotion = 0;
 
+
     float theta;
 
+    int arcAngle;
+
+    Circle &generator;
+    bool hide = false;
+
 public:
-    Particle(int size, position2D::Vector2D center, position2D::Vector2D velo, colorGraphics::RGBColor color, int life);
+    bool canDraw = true;
+    Particle(int size, position2D::Vector2D center, position2D::Vector2D velo, colorGraphics::RGBColor color, int life, Circle &g, int arcAngle);
 
     void update() override;
+
+    void draw() override;
 };
 
 

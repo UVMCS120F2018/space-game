@@ -5,12 +5,15 @@
 #include <math.h>
 #include "Particle.h"
 
-Particle::Particle(int size, position2D::Vector2D center, position2D::Vector2D velo, colorGraphics::RGBColor color, int life): Circle(size, center, color), velocity(velo), startPoint(center) {
+Particle::Particle(int size, position2D::Vector2D center, position2D::Vector2D velo, colorGraphics::RGBColor color, int life, Circle &g, int arcAngle): Circle(size, center, color), velocity(velo), startPoint(center), generator(g) {
     lifeSpan = life;
     theta = velo.rotationAngle * M_PI /180;
+    this->arcAngle = arcAngle;
 }
 
 void Particle::update() {
+
+
     if (increment < lifeSpan) {
         increment++;
 
@@ -24,7 +27,21 @@ void Particle::update() {
 
 
     } else {
+        if (canDraw) {
+            hide = false;
+        } else {
+            hide = true;
+        }
+
         increment = 0;
-        setPosition(startPoint);
+        position2D::Vector2D velo = generator.getPointOnEdge(arcAngle);
+        setPosition(velo);
+        theta = velo.rotationAngle * M_PI / 180;
+    }
+}
+
+void Particle::draw() {
+    if (!hide) {
+        Circle::draw();
     }
 }

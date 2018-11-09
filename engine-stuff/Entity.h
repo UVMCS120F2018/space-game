@@ -24,7 +24,7 @@ public:
     void setPosition(position2D::Vector2D v);
 
     // moves the entity from it's current point over by v amount
-    void translate(position2D::Vector2D v);
+    virtual void translate(position2D::Vector2D v);
 
     // returns the center point of the entity as a vector2d
     position2D::Vector2D getCenter();

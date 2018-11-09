@@ -45,6 +45,8 @@ public:
     void draw() override;
     void update() override;
 
+    void translate(position2D::Vector2D v) override;
+
     void start();
     void stop();
 

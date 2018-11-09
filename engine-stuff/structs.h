@@ -93,6 +93,11 @@ namespace colorGraphics {
     const RGBColor GREEN(0., 1., 0.);
     const RGBColor WHITE(1.,1.,1.);
     const RGBColor GRAY(.5,.5,.5);
+
+
+    const RGBGradient FIRE(RED, YELLOW);
+    const RGBGradient WATER(BLUE, GRAY);
+    const RGBGradient GRAYSCALE(BLACK, WHITE);
 }
 
 namespace position2D {
@@ -141,7 +146,7 @@ namespace position2D {
         Vector2D& operator +=(Vector2D v) {
             this->x += v.x;
             this->y += v.y;
-            this->rotationAngle += rotationAngle;
+            this->rotationAngle += v.rotationAngle;
             return *this;
         }
 

@@ -3,6 +3,7 @@
 //
 
 #include "graphicalDisplay.h"
+#include "Rocket.h"
 
 using namespace position2D;
 using namespace colorGraphics;
@@ -13,10 +14,23 @@ GLdouble width, height;
 int wd;
 
 
+vector<Entity*> allEnts;
+
+Rocket rocket(position2D::ZERO);
+PhysicsAspect p(&rocket, 5);
+
+bool leftArrow = false;
+bool rightArrow = false;
+bool accellerating = false;
+
+
 void init(int w, int h) {
     width = w;
     height = h;
 
+    rocket = Rocket(Vector2D(w/2,h/2));
+    allEnts.push_back(&rocket);
+    allEnts.push_back(&p);
 }
 
 /* Initialize OpenGL Graphics */
@@ -45,7 +59,9 @@ void display() {
      * Draw here
      */
 
-
+    for (Entity* &e: allEnts) {
+        e->draw();
+    }
 
 
     // Render now
@@ -71,15 +87,45 @@ void keyboardSpecial(int key, int x, int y) {
         case GLUT_KEY_DOWN:
             break;
         case GLUT_KEY_LEFT:
+            leftArrow = true;
+            rocket.turnLeft();
+            //rocket.turn(ROTATE_LEFT);
             break;
         case GLUT_KEY_RIGHT:
+            rightArrow = true;
+            rocket.turnRight();
+            //rocket.turn(ROTATE_RIGHT);
             break;
         case GLUT_KEY_UP:
+            accellerating = true;
             break;
     }
 
     glutPostRedisplay();
 }
+
+void keyboardSpecialDown(int key, int x, int y) {
+    switch(key) {
+        case GLUT_KEY_DOWN:
+            break;
+        case GLUT_KEY_LEFT:
+            leftArrow = false;
+            rocket.stopLeft();
+            //rocket.turn(ROTATE_LEFT);
+            break;
+        case GLUT_KEY_RIGHT:
+            rightArrow = false;
+            rocket.stopRight();
+            //rocket.turn(ROTATE_RIGHT);
+            break;
+        case GLUT_KEY_UP:
+            accellerating = false;
+            break;
+    }
+
+    glutPostRedisplay();
+}
+
 
 void cursor(int x, int y) {
 
@@ -96,6 +142,22 @@ void mouseClicked(int button, int state, int x, int y) {
 void timer(int dummy) {
     glutPostRedisplay();
     glutTimerFunc(30, timer, dummy);
+
+    for (Entity* &e: allEnts) {
+        e->update();
+    }
+
+    if (leftArrow) {
+        p.addForce(ROTATE_LEFT);
+    } else if (rightArrow) {
+        p.addForce(ROTATE_RIGHT);
+    }
+
+    if (accellerating) {
+        rocket.accelerateForward();
+    } else {
+        rocket.stopAccelerating();
+    }
 }
 
 /* Main function: GLUT runs as a console application starting at main()  */
@@ -124,6 +186,7 @@ int start(int argc, char** argv) {
 
     // register special event: function keys, arrows, etc.
     glutSpecialFunc(keyboardSpecial);
+    glutSpecialUpFunc(keyboardSpecialDown);
 
     // handles mouse movement
     glutPassiveMotionFunc(cursor);
