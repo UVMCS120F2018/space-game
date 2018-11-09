@@ -9,11 +9,14 @@
 #include "engine-stuff/Quadrangle.h"
 #include "engine-stuff/ParticleSystem.h"
 #include "engine-stuff/PhysicsAspect.h"
+#include "Projectile.h"
 
 class Rocket: public Quadrangle {
 private:
     int moveSpeed = 1;
     int turnSpeed = 1;
+
+    int ammo = 10;
 
     ParticleSystem mainThruster;
 
@@ -34,6 +37,8 @@ public:
 
     void draw() override;
     void update() override;
+
+    Projectile* shoot();
 };
 
 

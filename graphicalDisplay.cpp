@@ -71,10 +71,15 @@ void display() {
 // http://www.theasciicode.com.ar/ascii-control-characters/escape-ascii-code-27.html
 void keyboard(unsigned char key, int x, int y)
 {
+    Projectile* p = nullptr;
     switch (key) {
         case 27:
             glutDestroyWindow(wd);
             exit(0);
+        case 32:
+            p = rocket.shoot();
+            allEnts.push_back(p);
+            break;
         default:
             break;
     }

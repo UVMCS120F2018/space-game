@@ -29,7 +29,7 @@ file(GLOB SOURCE_FILES
         engine-stuff/*.h
         )
 
-add_executable(main.cpp ${SOURCE_FILES} game.h game.cpp graphicalDisplay.cpp graphicalDisplay.h Rocket.cpp Rocket.h)
+add_executable(main.cpp ${SOURCE_FILES} game.h game.cpp graphicalDisplay.cpp graphicalDisplay.h Rocket.cpp Rocket.h Projectile.cpp Projectile.h NullProjectile.cpp NullProjectile.h)
 
 if (WIN32)
     target_link_libraries (main.cpp ${OPENGL_LIBRARIES} freeglut)
