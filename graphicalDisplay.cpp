@@ -15,8 +15,16 @@ using namespace std;
 GLdouble width, height;
 int wd;
 
-enum Screen {START, GAME, HYPERSPACE, END};
+enum Screen {START, GAME, HYPERSPACE, END, RULES};
 
+Quad startRect({0, 1, 0}, {250, 150}, 200, 100);
+Quad howRect({0, 1, 0}, {250, 350}, 200, 100);
+Quad rules({0, 1, 0}, {250, 250}, 400, 100);
+Button rulesB(rules, "The only rules are there are no rules");
+Button button(startRect, "Press ENTER to Start");
+Button howPlay(howRect, "Press H for rules");
+
+void doNothing() {}
 
 vector<Entity*> allEnts;
 
@@ -68,6 +76,8 @@ void display() {
         case START:
             //do start screen drawing
             hyperspace.draw();
+            button.draw();
+            howPlay.draw();
             break;
 
         case GAME:
@@ -78,6 +88,10 @@ void display() {
 
         case END:
             //do end screen drawing
+            break;
+
+        case RULES:
+            rulesB.draw();
             break;
 
         default:
@@ -105,6 +119,9 @@ void keyboard(unsigned char key, int x, int y)
         case 32:
             p = rocket.shoot();
             allEnts.push_back(p);
+            break;
+        case 'h':
+            screen = RULES;
             break;
         case 13:
             screen = GAME;
