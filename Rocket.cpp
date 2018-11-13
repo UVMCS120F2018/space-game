@@ -6,11 +6,15 @@
 #include "Projectile.h"
 #include "NullProjectile.h"
 
+colorGraphics::RGBGradient matrix(colorGraphics::RGBColor(111, 239, 31), colorGraphics::RGBColor(58, 216, 10));
+colorGraphics::RGBGradient fire = colorGraphics::FIRE;
+
+
 Rocket::Rocket(position2D::Vector2D center): Quadrangle(50,20, center, colorGraphics::GRAY),
-                                             mainThruster(50, 1, 8, 20, 28, 3, colorGraphics::FIRE,
+                                             mainThruster(50, 1, 8, 20, 28, 3, matrix,
                                                           position2D::Vector2D(center.x, center.y, 180)),
-                                            rightThruster(25, 1, 3, 5, 15, 2, colorGraphics::FIRE,position2D::Vector2D(center.x, center.y, 135)),
-leftThruster(25, 1, 3, 5, 15, 2, colorGraphics::FIRE,position2D::Vector2D(center.x, center.y, -135)){
+                                            rightThruster(25, 1, 3, 5, 15, 2, matrix,position2D::Vector2D(center.x, center.y, 135)),
+leftThruster(25, 1, 3, 5, 15, 2, matrix,position2D::Vector2D(center.x, center.y, -135)){
     mainThruster.stop();
     rightThruster.stop();
     leftThruster.stop();

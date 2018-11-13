@@ -92,7 +92,7 @@ namespace colorGraphics {
     const RGBColor BLUE(0., 0., 1.);
     const RGBColor GREEN(0., 1., 0.);
     const RGBColor WHITE(1.,1.,1.);
-    const RGBColor GRAY(.5,.5,.5);
+    const RGBColor GRAY(.3,.3,.3);
 
 
     const RGBGradient FIRE(RED, YELLOW);
