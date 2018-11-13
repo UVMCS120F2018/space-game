@@ -55,7 +55,7 @@ void StarBoi::update() {
         rise = ri * 2;
         run = ru * 2;
 
-        setColor(black);
+        //setColor(black);
         setPosition(Vector2D(width / 2,height / 2));
 
     }

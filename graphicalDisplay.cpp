@@ -14,6 +14,8 @@ using namespace std;
 GLdouble width, height;
 int wd;
 
+enum Screen {START, GAME, HYPERSPACE, END};
+
 
 vector<Entity*> allEnts;
 
@@ -24,6 +26,8 @@ HyperSpace hyperspace(500, 5, 500,500, Vector2D(250,250));
 bool leftArrow = false;
 bool rightArrow = false;
 bool accellerating = false;
+
+Screen screen = GAME;
 
 
 void init(int w, int h) {
@@ -58,13 +62,30 @@ void display() {
 
     glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
+
+    switch (screen) {
+        case START:
+            //do start screen drawing
+            break;
+
+        case GAME:
+            for (Entity* &e: allEnts) {
+                e->draw();
+            }
+            break;
+
+        case END:
+            //do end screen drawing
+            break;
+
+        default:
+            break;
+    }
     /*
      * Draw here
      */
 
-    for (Entity* &e: allEnts) {
-        e->draw();
-    }
+
 
 
     // Render now
