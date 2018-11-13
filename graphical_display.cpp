@@ -20,11 +20,11 @@ enum Screen {START, GAME, HYPERSPACE, END, RULES};
 Quad startRect({0, 1, 0}, {250, 150}, 200, 100);
 Quad howRect({0, 1, 0}, {250, 350}, 200, 100);
 Quad rules({0, 1, 0}, {250, 250}, 400, 100);
+Quad back({0, 1, 0}, {250, 450}, 80, 50);
+Button goBack(back, "Go back");
 Button rulesB(rules, "The only rules are there are no rules");
-Button button(startRect, "Press ENTER to Start");
-Button howPlay(howRect, "Press H for rules");
-
-void doNothing() {}
+Button button(startRect, "Click here to Start");
+Button howPlay(howRect, "Click here for rules");
 
 vector<Entity*> allEnts;
 
@@ -37,6 +37,17 @@ bool rightArrow = false;
 bool accellerating = false;
 
 Screen screen = START;
+
+void playGame() {
+    screen = GAME;
+}
+void getRules() {
+    screen = RULES;
+}
+void startScreen() {
+    screen = START;
+}
+void doNothing() {}
 
 
 void init(int w, int h) {
@@ -92,6 +103,7 @@ void display() {
 
         case RULES:
             rulesB.draw();
+            goBack.draw();
             break;
 
         default:
@@ -179,13 +191,77 @@ void keyboardSpecialDown(int key, int x, int y) {
 
 
 void cursor(int x, int y) {
+    /* play button */
+    if (button.isOverlapping(x, y)) {
+        button.hover();
+    } else {
+        button.release();
+    }
+
+    /* rules button */
+    if (howPlay.isOverlapping(x, y)) {
+        howPlay.hover();
+    } else {
+        howPlay.release();
+    }
+
+    /* go back button in rules page */
+    if (goBack.isOverlapping(x, y)) {
+        goBack.hover();
+    } else {
+        goBack.release();
+    }
 
     glutPostRedisplay();
 }
 
 // button will be GLUT_LEFT_BUTTON or GLUT_RIGHT_BUTTON
 // state will be GLUT_UP or GLUT_DOWN
-void mouseClicked(int button, int state, int x, int y) {
+void mouseClicked(int b, int state, int x, int y) {
+    /* start game button. pressing enter still works too */
+    if (state == GLUT_DOWN &&
+        b == GLUT_LEFT_BUTTON &&
+        button.isOverlapping(x, y)) {
+        button.pressDown();
+    } else {
+        button.release();
+    }
+
+    if (state == GLUT_UP &&
+        b == GLUT_LEFT_BUTTON &&
+        button.isOverlapping(x, y)) {
+        button.click(playGame);
+    }
+
+    /* rules button. pressing h still works */
+    if (state == GLUT_DOWN &&
+        b == GLUT_LEFT_BUTTON &&
+        howPlay.isOverlapping(x, y)) {
+        howPlay.pressDown();
+    } else {
+        howPlay.release();
+    }
+
+    if (state == GLUT_UP &&
+        b == GLUT_LEFT_BUTTON &&
+            howPlay.isOverlapping(x, y)) {
+        howPlay.click(getRules);
+    }
+
+    /* go back button */
+    if (state == GLUT_DOWN &&
+        b == GLUT_LEFT_BUTTON &&
+        goBack.isOverlapping(x, y)) {
+        goBack.pressDown();
+    } else {
+        howPlay.release();
+    }
+
+    if (state == GLUT_UP &&
+        b == GLUT_LEFT_BUTTON &&
+        goBack.isOverlapping(x, y)) {
+        goBack.click(startScreen);
+    }
 
     glutPostRedisplay();
 }
