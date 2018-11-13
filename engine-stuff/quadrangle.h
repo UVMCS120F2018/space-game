@@ -7,7 +7,7 @@
 
 
 #include "structs.h"
-#include "Shape.h"
+#include "shape.h"
 
 class Quadrangle: public Shape2D {
 private:

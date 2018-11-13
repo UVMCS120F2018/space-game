@@ -4,7 +4,7 @@
 
 #include <math.h>
 #include <iostream>
-#include "ParticleSystem.h"
+#include "particle_system.h"
 
 ParticleSystem::ParticleSystem(int particleNum, int generationRate,
                                int length, int arcAngle, int arcHeight, int partSize,

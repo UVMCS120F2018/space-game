@@ -2,8 +2,8 @@
 // Created by Ethan Nerney on 11/1/18.
 //
 
-#include "Quadrangle.h"
-#include "graphicsImports.h"
+#include "quadrangle.h"
+#include "graphics_imports.h"
 #include <vector>
 #include <math.h>
 

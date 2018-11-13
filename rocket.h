@@ -6,10 +6,10 @@
 #define SPACE_GAME_ROCKET_H
 
 
-#include "engine-stuff/Quadrangle.h"
-#include "engine-stuff/ParticleSystem.h"
-#include "engine-stuff/PhysicsAspect.h"
-#include "Projectile.h"
+#include "engine-stuff/quadrangle.h"
+#include "engine-stuff/particle_system.h"
+#include "engine-stuff/physics_aspect.h"
+#include "projectile.h"
 
 class Rocket: public Quadrangle {
 private:

@@ -4,9 +4,9 @@
 
 #include <math.h>
 #include <iostream>
-#include "Circle.h"
-#include "graphicsImports.h"
-#include "RandNum.h"
+#include "circle.h"
+#include "graphics_imports.h"
+#include "rand_num.h"
 
 Circle::Circle(int r, position2D::Vector2D center, colorGraphics::RGBColor color): Shape2D(center, color) {
     radius = r;

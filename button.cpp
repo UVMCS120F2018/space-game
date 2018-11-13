@@ -2,8 +2,8 @@
 // Created by Jeremy Weiland on 11/13/18.
 //
 
-#include "Button.h"
-#include "graphicalDisplay.h"
+#include "button.h"
+#include "graphical_display.h"
 using namespace std;
 
 /********** Quad *************/

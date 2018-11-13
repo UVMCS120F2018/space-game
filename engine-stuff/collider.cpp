@@ -3,7 +3,7 @@
 //
 
 #include <iostream>
-#include "Collider.h"
+#include "collider.h"
 std::vector<CircleCollider> CircleCollider::allColliders;
 CircleCollider::CircleCollider(Entity *e, position2D::Vector2D offset, int r): entity(e), Circle(r, e->getCenter() + offset, colorGraphics::GREEN) {}
 

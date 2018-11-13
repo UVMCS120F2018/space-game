@@ -2,7 +2,7 @@
 // Created by Ethan Nerney on 11/1/18.
 //
 
-#include "Entity.h"
+#include "entity.h"
 
 Entity::Entity(position2D::Vector2D point): centerPoint(point) {}
 

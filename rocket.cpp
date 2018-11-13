@@ -2,9 +2,9 @@
 // Created by Ethan Nerney on 11/7/18.
 //
 
-#include "Rocket.h"
-#include "Projectile.h"
-#include "NullProjectile.h"
+#include "rocket.h"
+#include "projectile.h"
+#include "null_projectile.h"
 
 colorGraphics::RGBGradient matrix(colorGraphics::RGBColor(111, 239, 31), colorGraphics::RGBColor(58, 216, 10));
 colorGraphics::RGBGradient fire = colorGraphics::FIRE;

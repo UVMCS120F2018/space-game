@@ -3,8 +3,8 @@
 //
 
 #include <math.h>
-#include "StarBoi.h"
-#include "engine-stuff/RandNum.h"
+#include "star_boi.h"
+#include "engine-stuff/rand_num.h"
 
 using namespace position2D;
 StarBoi::StarBoi(int rise, int run, int r, int boundsHeight, int boundsWidth, position2D::Vector2D point):
