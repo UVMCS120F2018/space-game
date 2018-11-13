@@ -5,6 +5,7 @@
 #include "graphicalDisplay.h"
 #include "Rocket.h"
 #include "Hyperspace.h"
+#include "Button.h"
 
 using namespace position2D;
 using namespace colorGraphics;
