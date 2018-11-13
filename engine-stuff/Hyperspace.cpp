@@ -47,5 +47,6 @@ void HyperSpace::draw() {
     for (StarBoi &s: starBois) {
         s.draw();
     }
+
 }
 

@@ -8,7 +8,7 @@
 
 using namespace position2D;
 StarBoi::StarBoi(int rise, int run, int r, int boundsHeight, int boundsWidth, position2D::Vector2D point):
-        Circle(r, point, colorGraphics::BLACK) {
+        Circle(r, point, colorGraphics::WHITE) {
     this->rise = rise;
     this->run = run;
     height = boundsHeight;
@@ -21,12 +21,12 @@ void StarBoi::update() {
     colorGraphics::RGBColor black(0,0,0);
     colorGraphics::RGBColor white(255,255,255);
 
-    if ((getCenter().x > (width / 2) - 50 and getCenter().x < (width / 2) + 50) and (getCenter().y > (height / 2) - 50 and
-                                                                                     getCenter().y < (height / 2) + 50)) {
-        setColor(black);
-    } else {
-        setColor(white);
-    }
+//    if ((getCenter().x > (width / 2) - 50 and getCenter().x < (width / 2) + 50) and (getCenter().y > (height / 2) - 50 and
+//                                                                                     getCenter().y < (height / 2) + 50)) {
+//        setColor(black);
+//    } else {
+//        setColor(white);
+//    }
 
 
 

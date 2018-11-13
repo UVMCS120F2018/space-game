@@ -4,6 +4,7 @@
 
 #include "graphicalDisplay.h"
 #include "Rocket.h"
+#include "engine-stuff/Hyperspace.h"
 
 using namespace position2D;
 using namespace colorGraphics;
@@ -18,6 +19,7 @@ vector<Entity*> allEnts;
 
 Rocket rocket(position2D::ZERO);
 PhysicsAspect p(&rocket, 5);
+HyperSpace hyperspace(500, 5, 500,500, Vector2D(250,250));
 
 bool leftArrow = false;
 bool rightArrow = false;
@@ -29,6 +31,7 @@ void init(int w, int h) {
     height = h;
 
     rocket = Rocket(Vector2D(w/2,h/2));
+    allEnts.push_back(&hyperspace);
     allEnts.push_back(&rocket);
     allEnts.push_back(&p);
 }
@@ -103,6 +106,7 @@ void keyboardSpecial(int key, int x, int y) {
             break;
         case GLUT_KEY_UP:
             accellerating = true;
+            //rocket.translate(UP * 5);
             break;
     }
 
