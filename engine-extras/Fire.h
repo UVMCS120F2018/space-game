@@ -6,8 +6,8 @@
 #define SPACE_STUFF_FIRE_H
 
 
-#include "Entity.h"
-#include "ParticleSystem.h"
+#include "../engine-stuff/Entity.h"
+#include "../engine-stuff/ParticleSystem.h"
 
 class Fire: public Entity {
 private:

@@ -4,7 +4,7 @@
 
 #include "graphicalDisplay.h"
 #include "Rocket.h"
-#include "engine-stuff/Hyperspace.h"
+#include "Hyperspace.h"
 
 using namespace position2D;
 using namespace colorGraphics;

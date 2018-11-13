@@ -6,8 +6,8 @@
 #define SPACE_STUFF_PHYSICSCIRCLE_H
 
 
-#include "Circle.h"
-#include "PhysicsAspect.h"
+#include "../engine-stuff/Circle.h"
+#include "../engine-stuff/PhysicsAspect.h"
 
 class PhysicsCircle: public Circle {
 public:

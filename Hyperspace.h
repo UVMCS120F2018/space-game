@@ -7,8 +7,8 @@
 
 
 #include <vector>
-#include "Entity.h"
-#include "StarBoi.h"
+#include "engine-stuff/Entity.h"
+#include "engine-extras/StarBoi.h"
 
 class HyperSpace: public Entity {
 private:

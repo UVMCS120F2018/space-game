@@ -6,7 +6,7 @@
 #define SPACE_STUFF_MYQUAD_H
 
 
-#include "Quadrangle.h"
+#include "../engine-stuff/Quadrangle.h"
 
 class MyQuad: public Quadrangle {
 private:
