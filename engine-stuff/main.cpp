@@ -15,6 +15,7 @@
 //#include "Fire.h"
 //#include "PhysicsCircle.h"
 //
+//
 //GLdouble width, height;
 //int wd;
 //using namespace position2D;

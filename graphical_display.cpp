@@ -5,6 +5,7 @@
 #include "graphical_display.h"
 #include "rocket.h"
 #include "hyperspace.h"
+#include "button.h"
 
 using namespace position2D;
 using namespace colorGraphics;
@@ -13,6 +14,8 @@ using namespace std;
 
 GLdouble width, height;
 int wd;
+
+enum Screen {START, GAME, HYPERSPACE, END};
 
 
 vector<Entity*> allEnts;
@@ -25,13 +28,15 @@ bool leftArrow = false;
 bool rightArrow = false;
 bool accellerating = false;
 
+Screen screen = START;
+
 
 void init(int w, int h) {
     width = w;
     height = h;
 
     rocket = Rocket(Vector2D(w/2,h/2));
-    allEnts.push_back(&hyperspace);
+   //allEnts.push_back(&hyperspace);
     allEnts.push_back(&rocket);
     allEnts.push_back(&p);
 }
@@ -58,13 +63,31 @@ void display() {
 
     glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
+
+    switch (screen) {
+        case START:
+            //do start screen drawing
+            hyperspace.draw();
+            break;
+
+        case GAME:
+            for (Entity* &e: allEnts) {
+                e->draw();
+            }
+            break;
+
+        case END:
+            //do end screen drawing
+            break;
+
+        default:
+            break;
+    }
     /*
      * Draw here
      */
 
-    for (Entity* &e: allEnts) {
-        e->draw();
-    }
+
 
 
     // Render now
@@ -83,6 +106,8 @@ void keyboard(unsigned char key, int x, int y)
             p = rocket.shoot();
             allEnts.push_back(p);
             break;
+        case 13:
+            screen = GAME;
         default:
             break;
     }
@@ -152,21 +177,45 @@ void timer(int dummy) {
     glutPostRedisplay();
     glutTimerFunc(30, timer, dummy);
 
-    for (Entity* &e: allEnts) {
-        e->update();
+
+
+    switch (screen) {
+        case START:
+            //do start screen drawing
+            hyperspace.update();
+            break;
+
+        case GAME:
+
+
+            for (Entity* &e: allEnts) {
+                e->update();
+            }
+
+            if (leftArrow) {
+                p.addForce(ROTATE_LEFT);
+            } else if (rightArrow) {
+                p.addForce(ROTATE_RIGHT);
+            }
+
+            if (accellerating) {
+                rocket.accelerateForward();
+            } else {
+                rocket.stopAccelerating();
+            }
+
+
+            break;
+
+        case END:
+            //do end screen drawing
+            break;
+
+        default:
+            break;
     }
 
-    if (leftArrow) {
-        p.addForce(ROTATE_LEFT);
-    } else if (rightArrow) {
-        p.addForce(ROTATE_RIGHT);
-    }
 
-    if (accellerating) {
-        rocket.accelerateForward();
-    } else {
-        rocket.stopAccelerating();
-    }
 }
 
 /* Main function: GLUT runs as a console application starting at main()  */
