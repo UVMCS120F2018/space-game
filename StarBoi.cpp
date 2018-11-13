@@ -4,7 +4,7 @@
 
 #include <math.h>
 #include "StarBoi.h"
-#include "../engine-stuff/RandNum.h"
+#include "engine-stuff/RandNum.h"
 
 using namespace position2D;
 StarBoi::StarBoi(int rise, int run, int r, int boundsHeight, int boundsWidth, position2D::Vector2D point):
