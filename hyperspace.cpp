@@ -2,8 +2,8 @@
 // Created by Ethan Nerney on 11/2/18.
 //
 
-#include "Hyperspace.h"
-#include "engine-stuff/RandNum.h"
+#include "hyperspace.h"
+#include "engine-stuff/rand_num.h"
 
 using namespace position2D;
 

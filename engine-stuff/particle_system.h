@@ -7,9 +7,9 @@
 
 
 #include <vector>
-#include "Entity.h"
-#include "Circle.h"
-#include "Particle.h"
+#include "entity.h"
+#include "circle.h"
+#include "particle.h"
 
 class ParticleSystem: public Entity {
 private:

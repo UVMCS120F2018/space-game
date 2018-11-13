@@ -6,7 +6,7 @@
 #define SPACE_GAME_NULLPROJECTILE_H
 
 
-#include "Projectile.h"
+#include "projectile.h"
 
 class NullProjectile: public Projectile {
 public:

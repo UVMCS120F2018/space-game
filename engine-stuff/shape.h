@@ -7,7 +7,7 @@
 
 #include <vector>
 #include "structs.h"
-#include "Entity.h"
+#include "entity.h"
 
 class Shape2D: public Entity {
 private:

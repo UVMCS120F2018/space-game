@@ -6,7 +6,7 @@
 #define SPACE_GAME_PROJECTILE_H
 
 
-#include "engine-stuff/Circle.h"
+#include "engine-stuff/circle.h"
 
 class Projectile: public Circle {
 private:

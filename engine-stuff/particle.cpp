@@ -3,7 +3,7 @@
 //
 
 #include <math.h>
-#include "Particle.h"
+#include "particle.h"
 
 Particle::Particle(int size, position2D::Vector2D center, position2D::Vector2D velo, colorGraphics::RGBColor color, int life, Circle &g, int arcAngle): Circle(size, center, color), velocity(velo), startPoint(center), generator(g) {
     lifeSpan = life;

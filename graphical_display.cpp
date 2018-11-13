@@ -2,9 +2,9 @@
 // Created by Ethan Nerney on 11/7/18.
 //
 
-#include "graphicalDisplay.h"
-#include "Rocket.h"
-#include "Hyperspace.h"
+#include "graphical_display.h"
+#include "rocket.h"
+#include "hyperspace.h"
 
 using namespace position2D;
 using namespace colorGraphics;

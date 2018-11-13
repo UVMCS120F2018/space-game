@@ -6,7 +6,7 @@
 #define SPACE_GAME_ASTEROID_H
 
 
-#include "Circle.h"
+#include "engine-stuff/circle.h"
 
 class Asteroid : public Circle {
     // they dont do anything lol

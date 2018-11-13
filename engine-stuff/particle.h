@@ -6,7 +6,7 @@
 #define SPACE_STUFF_PARTICLE_H
 
 
-#include "Circle.h"
+#include "circle.h"
 
 class Particle: public Circle {
 private:

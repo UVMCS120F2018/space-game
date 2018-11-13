@@ -2,9 +2,9 @@
 // Created by Ethan Nerney on 11/7/18.
 //
 
-#include "Rocket.h"
-#include "Projectile.h"
-#include "NullProjectile.h"
+#include "rocket.h"
+#include "projectile.h"
+#include "null_projectile.h"
 
 Rocket::Rocket(position2D::Vector2D center): Quadrangle(50,20, center, colorGraphics::GRAY),
                                              mainThruster(50, 1, 8, 20, 28, 3, colorGraphics::FIRE,

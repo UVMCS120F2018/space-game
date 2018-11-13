@@ -7,8 +7,8 @@
 
 
 #include "structs.h"
-#include "Entity.h"
-#include "Collider.h"
+#include "entity.h"
+#include "collider.h"
 
 #include <stdlib.h>
 #include <experimental/optional>

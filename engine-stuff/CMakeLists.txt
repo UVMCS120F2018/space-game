@@ -27,7 +27,7 @@ file(GLOB SOURCE_FILES
         *.h
         )
 
-add_executable(main.cpp ${SOURCE_FILES} display.h Shape.cpp Shape.h structs.h Circle.cpp Circle.h graphicsImports.h Quadrangle.cpp Quadrangle.h Entity.cpp Entity.h ../StarBoi.cpp ../StarBoi.h ../Hyperspace.cpp ../Hyperspace.h RandNum.cpp RandNum.h ParticleSystem.cpp ParticleSystem.h Particle.cpp Particle.h PhysicsAspect.cpp PhysicsAspect.h Collider.cpp Collider.h)
+add_executable(main.cpp ${SOURCE_FILES} display.h shape.cpp shape.h structs.h circle.cpp circle.h graphics_imports.h quadrangle.cpp quadrangle.h entity.cpp entity.h ../star_boi.cpp ../star_boi.h ../hyperspace.cpp ../hyperspace.h rand_num.cpp rand_num.h particle_system.cpp particle_system.h particle.cpp particle.h physics_aspect.cpp physics_aspect.h collider.cpp collider.h)
 
 if (WIN32)
     target_link_libraries (main.cpp ${OPENGL_LIBRARIES} freeglut)

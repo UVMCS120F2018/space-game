@@ -6,7 +6,7 @@
 #define SPACE_STUFF_STARBOI_H
 
 
-#include "engine-stuff/Circle.h"
+#include "engine-stuff/circle.h"
 
 class StarBoi: public Circle {
 private:

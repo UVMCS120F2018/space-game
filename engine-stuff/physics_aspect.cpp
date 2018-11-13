@@ -3,8 +3,8 @@
 //
 
 #include <iostream>
-#include "PhysicsAspect.h"
-#include "ParticleSystem.h"
+#include "physics_aspect.h"
+#include "particle_system.h"
 
 typedef std::experimental::optional<PhysicsAspect> optPhys;
 

@@ -7,9 +7,9 @@
 
 #include <string>
 #include <experimental/optional>
-#include "Entity.h"
+#include "entity.h"
 #include "structs.h"
-#include "Circle.h"
+#include "circle.h"
 
 typedef std::experimental::optional<Entity*> optEnt;
 class CircleCollider: public Circle{

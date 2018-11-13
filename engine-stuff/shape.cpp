@@ -3,7 +3,7 @@
 //
 
 #include <iostream>
-#include "Shape.h"
+#include "shape.h"
 
 Shape2D::Shape2D(position2D::Vector2D center, colorGraphics::RGBColor col): Entity(center), shapeColor(col){}
 
