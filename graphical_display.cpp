@@ -21,7 +21,7 @@ enum Screen {START, GAME, HYPERSPACE, END, RULES};
 Quad startRect({0, 1, 0}, {250, 150}, 200, 100);
 Quad howRect({0, 1, 0}, {250, 350}, 200, 100);
 Quad rules({0, 1, 0}, {250, 250}, 400, 100);
-Quad back({0, 1, 0}, {250, 450}, 80, 50);
+Quad back({0, 1, 0}, {250, 450}, 80, 30);
 Button goBack(back, "Go back");
 Button rulesB(rules, "The only rules are there are no rules");
 Button button(startRect, "Click here to Start");
@@ -106,7 +106,7 @@ void display() {
 
         case RULES:
             rulesB.draw();
-            goBack.draw();
+            goBack.draw(4, 3);
             break;
 
         default:

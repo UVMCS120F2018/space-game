@@ -68,6 +68,9 @@ public:
     /* Uses OpenGL to draw the box with the label on top */
     virtual void draw();
 
+    /* move the label */
+    virtual void draw(int x, int y);
+
     /* Returns true if the coordinate is inside the box */
     bool isOverlapping(int x, int y) const;
 

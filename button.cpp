@@ -128,6 +128,15 @@ void Button::draw() {
     }
 }
 
+void Button::draw(int x = 4, int y = 7) {
+    box.draw();
+    glColor3f(0, 0, 0);
+    glRasterPos2i(box.getCenterX()-(x*label.length()), box.getCenterY()+y);
+    for (char &letter : label) {
+        glutBitmapCharacter(GLUT_BITMAP_8_BY_13, letter);
+    }
+}
+
 /* Returns true if the coordinate is inside the box */
 bool Button::isOverlapping(int x, int y) const {
     return (x >= box.getLeftX() &&
