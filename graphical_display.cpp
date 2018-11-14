@@ -6,6 +6,7 @@
 #include "rocket.h"
 #include "hyperspace.h"
 #include "button.h"
+#include "asteroid.h"
 
 using namespace position2D;
 using namespace colorGraphics;
@@ -31,6 +32,7 @@ vector<Entity*> allEnts;
 Rocket rocket(position2D::ZERO);
 PhysicsAspect p(&rocket, 5);
 HyperSpace hyperspace(500, 5, 500,500, Vector2D(250,250));
+Asteroid rock(25, Vector2D(89, 73), colorGraphics::RGBColor(.7, .7, .7));
 
 bool leftArrow = false;
 bool rightArrow = false;
@@ -58,6 +60,7 @@ void init(int w, int h) {
    //allEnts.push_back(&hyperspace);
     allEnts.push_back(&rocket);
     allEnts.push_back(&p);
+    allEnts.push_back(&rock);
 }
 
 /* Initialize OpenGL Graphics */
