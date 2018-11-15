@@ -85,12 +85,12 @@ void spawnAsteroid(int numA) {
     for (int i = 0; i < numA; ++i) {
         int radius = rand() % ASTEROID_MAX_WIDTH + ASTEROID_MIN_WIDTH;
         Asteroid* a = new Asteroid(radius, Vector2D(rand() % (int)width, rand() % (int)height), darkGrayscale.getColor());
-        PhysicsAspect* pa = new PhysicsAspect(a, 5, Circle(a->getRadius(), a->getCenter(), colorGraphics::GREEN));
-        pa->addForce(Vector2D(rand() % 2 - 1, rand() % 2 - 1));
+//        PhysicsAspect* pa = new PhysicsAspect(a, 5, Circle(a->getRadius(), a->getCenter(), colorGraphics::GREEN));
+//        pa->addForce(Vector2D(rand() % 2 - 1, rand() % 2 - 1));
 
         allEnts.emplace_back(a);
-        allEnts.emplace_back(pa);
-        physAspects.emplace_back(pa);
+//        allEnts.emplace_back(pa);
+//        physAspects.emplace_back(pa);
 
         cout << "ents size" << allEnts.size() << endl;
         stuff.push_back({radius, allEnts.size()});
