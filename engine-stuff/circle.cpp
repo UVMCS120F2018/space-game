@@ -93,3 +93,9 @@ bool Circle::doesIntersect(Circle &c, position2D::Vector2D &intersection) {
     return  sqDistance <= sqRad;
 }
 
+//position2D::Vector2D Circle::getCenter() {
+//    int cx = getCenter().x, cy = getCenter().y;
+//    position2D::Vector2D center(cx, cy);
+//    return center;
+//}
+

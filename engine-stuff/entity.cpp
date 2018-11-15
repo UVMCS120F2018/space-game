@@ -25,3 +25,4 @@ void Entity::update() {}
 std::string Entity::toString() {
     return "Entity";
 }
+

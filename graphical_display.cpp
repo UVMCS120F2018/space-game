@@ -17,6 +17,10 @@ GLdouble width, height;
 int wd;
 
 enum Screen {START, GAME, HYPERSPACE, END, RULES};
+struct asteroidStuff{
+    int radius;
+    unsigned long num;
+};
 
 Quad startRect({0, 1, 0}, {600, 200}, 200, 100);
 Quad howRect({0, 1, 0}, {600, 400}, 200, 100);
@@ -29,6 +33,7 @@ Button howPlay(howRect, "Click here for rules");
 
 vector<Entity*> allEnts;
 vector<PhysicsAspect*> physAspects;
+vector<asteroidStuff> stuff;
 
 Rocket rocket(position2D::ZERO);
 PhysicsAspect phys(&rocket, 5);
@@ -85,7 +90,7 @@ void spawnAsteroid(int numA) {
         allEnts.emplace_back(pa);
         physAspects.emplace_back(pa);
 
-
+        stuff.push_back({radius, allEnts.size()});
     }
 
 }
@@ -161,16 +166,20 @@ void keyboard(unsigned char key, int x, int y)
             exit(0);
         case 32:
             p = rocket.shoot();
-            allEnts.push_back(p);
+            //allEnts.push_back(p);
             allEnts.emplace_back(new PhysicsAspect(p, 1, Circle(p->getRadius(),p->getCenter(), colorGraphics::GREEN)));
             theta = rocket.getCenter().rotationAngle * M_PI / 180;
             phys.addForce(-Vector2D(cosf(theta),sinf(theta)));
+            allEnts.insert(allEnts.begin(), p);
+//            allEnts.push_back(p);
             break;
         case 'h':
             screen = RULES;
             break;
         case 13:
             screen = GAME;
+        case 'q':
+            screen = END;
         default:
             break;
     }
@@ -312,7 +321,7 @@ void timer(int dummy) {
             hyperspace.update();
             break;
 
-        case GAME:
+        case GAME: {
 
 
             for (Entity* &e: allEnts) {
@@ -331,11 +340,34 @@ void timer(int dummy) {
                 double x = cosf(theta);
                 double y = sinf(theta);
 
-                phys.addForce(Vector2D(x,y));
+                phys.addForce(Vector2D(x, y));
             } else {
                 rocket.stopAccelerating();
             }
 
+            for (int i = 0; i < allEnts.size(); ++i) {
+                std::string eString = allEnts[i]->toString();
+                int r = 0;
+                if (eString == "projectile") {
+                    Projectile temp(allEnts[i]->getCenter(), {0, 0});
+                    for (int j = i; j < allEnts.size(); ++j) {
+                        std::string eString2 = allEnts[j]->toString();
+                        if (eString2 == "asteroid") {
+//                            for (int k = 0; k < stuff.size(); ++k) {
+////                                cout << stuff.at(k).num << endl;
+//                                if (j == stuff.at(k).num) {
+//                                    r = stuff.at(k).radius;
+//                                }
+//                            }
+                            Asteroid tem( /*stuff.at(j-stuff.size()).radius*/ ASTEROID_MAX_WIDTH, allEnts[j]->getCenter(), {0, 0, 0});
+                            if (temp.doesIntersect(tem)) {
+                                allEnts.erase(allEnts.begin() + j);
+                            }
+                        }
+                    }
+                }
+            }
+        }
 
             break;
 

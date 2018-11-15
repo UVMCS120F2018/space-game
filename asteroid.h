@@ -12,6 +12,8 @@ class Asteroid : public Circle {
 public:
     Asteroid(int r, const position2D::Vector2D &center, const colorGraphics::RGBColor &color);
     // they dont do anything lol
+
+    std::string toString() override;
 };
 
 

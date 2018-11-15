@@ -9,3 +9,7 @@ Projectile::Projectile(position2D::Vector2D start, position2D::Vector2D velocity
 void Projectile::update() {
     translate(v);
 }
+
+std::string Projectile::toString() {
+    return "projectile";
+}

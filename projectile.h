@@ -16,6 +16,7 @@ public:
 
     void update() override;
 
+    std::string toString() override;
 };
 
 

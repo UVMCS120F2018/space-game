@@ -33,6 +33,8 @@ public:
     void update() override;
 
     void draw() override;
+
+    std::string toString() override;
 };
 
 

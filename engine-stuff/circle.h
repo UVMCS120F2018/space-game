@@ -24,6 +24,9 @@ public:
 
     void draw() override;
 
+//    position2D::Vector2D getCenter();
+
+
     // This returns a random point on the edge of the circle for use in
     position2D::Vector2D getPointOnEdge();
     position2D::Vector2D getPointOnEdge(int arcAngle);

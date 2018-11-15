@@ -45,3 +45,7 @@ void Particle::draw() {
         Circle::draw();
     }
 }
+
+std::string Particle::toString() {
+    return "particle";
+}

@@ -36,6 +36,7 @@ public:
     virtual void draw() = 0;
 
     virtual std::string toString();
+
 };
 
 
