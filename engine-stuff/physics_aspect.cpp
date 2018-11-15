@@ -33,13 +33,13 @@ void PhysicsAspect::setVelocity(position2D::Vector2D v) {
 
 void PhysicsAspect::update() {
     e->translate(velocity);
-    //setPosition(e->getCenter());
-    //collider.setPosition(getCenter());
+    setPosition(e->getCenter());
+    collider.setPosition(getCenter());
 
-    //checkForCollision();
+    checkForCollision();
 
 
-    //setEnergyAndMomentum();
+    setEnergyAndMomentum();
 }
 
 void PhysicsAspect::draw() {

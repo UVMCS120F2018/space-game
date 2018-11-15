@@ -28,6 +28,7 @@ Button button(startRect, "Click here to Start");
 Button howPlay(howRect, "Click here for rules");
 
 vector<Entity*> allEnts;
+vector<PhysicsAspect*> physAspects;
 
 Rocket rocket(position2D::ZERO);
 PhysicsAspect phys(&rocket, 5);
@@ -68,7 +69,15 @@ void init(int w, int h) {
     auto darkGrayscale = colorGraphics::RGBGradient(RGBColor(.5, .5, .5), RGBColor(.07, .07, .07));
     for (int i = 0; i < 17; ++i) {
         int radius = rand() % ASTEROID_MAX_WIDTH + ASTEROID_MIN_WIDTH;
-        allEnts.emplace_back(new Asteroid(radius, Vector2D(rand() % (int)width, rand() % (int)height), darkGrayscale.getColor()));
+        Asteroid* a = new Asteroid(radius, Vector2D(rand() % (int)width, rand() % (int)height), darkGrayscale.getColor());
+        PhysicsAspect* pa = new PhysicsAspect(a, 5, Circle(a->getRadius(), a->getCenter(), colorGraphics::GREEN));
+        pa->addForce(Vector2D(rand() % 2 - 1, rand() % 2 - 1));
+
+        allEnts.emplace_back(a);
+        allEnts.emplace_back(pa);
+        physAspects.emplace_back(pa);
+
+
     }
 
 //    Asteroid rock(25, Vector2D(89, 73), colorGraphics::RGBColor(.7, .7, .7));
