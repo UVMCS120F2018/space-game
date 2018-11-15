@@ -21,3 +21,7 @@ position2D::Vector2D Entity::getCenter() {
 }
 
 void Entity::update() {}
+
+std::string Entity::toString() {
+    return "Entity";
+}
