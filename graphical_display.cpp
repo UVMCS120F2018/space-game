@@ -32,7 +32,7 @@ Button howPlay(howRect, "Click here for rules");
 
 vector<Entity*> allEnts;
 vector<PhysicsAspect*> physAspects;
-vector<optional<int>> stuff;
+vector<optional<int>> stuff; // vector keeps track of asteroid info. needed for destroying them with projectiles
 
 Rocket rocket(position2D::ZERO);
 PhysicsAspect phys(&rocket, 5);
@@ -41,7 +41,6 @@ HyperSpace hyperspace(500, 5, 1200,600, Vector2D(600,300));
 const int ASTEROID_MAX_WIDTH = 35;
 const int ASTEROID_MIN_WIDTH = 7;
 
-int sub = 3;
 
 bool leftArrow = false;
 bool rightArrow = false;
@@ -88,7 +87,7 @@ void spawnAsteroid(int numA) {
 //        allEnts.emplace_back(pa);
 //        physAspects.emplace_back(pa);
 
-        stuff.push_back(radius);
+        stuff.push_back(radius); // add asteroid radius to vector, order matters here.
     }
 
 }
@@ -166,11 +165,9 @@ void keyboard(unsigned char key, int x, int y)
 
             p = rocket.shoot();
             allEnts.emplace_back(new PhysicsAspect(p, 1, Circle(p->getRadius(),p->getCenter(), colorGraphics::GREEN)));
-            ++sub;
             theta = rocket.getCenter().rotationAngle * M_PI / 180;
             phys.addForce(-Vector2D(cosf(theta),sinf(theta)));
             allEnts.insert(allEnts.begin(), p);
-            ++sub;
 
             break;
         case 'h':
@@ -347,27 +344,28 @@ void timer(int dummy) {
                 rocket.stopAccelerating();
             }
 
+            /* crazy loops for projectiles hitting asteroids */
             for (int i = 0; i < allEnts.size(); ++i) {
+                // see if this entity is a projectile
                 std::string eString = allEnts[i]->toString();
-                int r = 0;
-                int index = 0;
+                int index = 0; // index for accessing things from asteroid info vector
                 if (eString == "projectile") {
-                    Projectile temp(allEnts[i]->getCenter(), {0, 0});
+                    Projectile temp(allEnts[i]->getCenter(), {0, 0}); // temp projectile at position of actual projectile
                     for (int j = i; j < allEnts.size(); ++j) {
-                        std::string eString2 = allEnts[j]->toString();
+                        std::string eString2 = allEnts[j]->toString(); // see if there are other asteroids
                         if (eString2 == "asteroid") {
-                            if(!stuff.at(index)){
+                            if(!stuff.at(index)){ // if asteroid has already been destoryed, incremet index
                                 ++index;
                             }
-                            Asteroid tem(*stuff.at(index), allEnts[j]->getCenter(), {0, 0, 0});
+                            Asteroid tem(*stuff.at(index), allEnts[j]->getCenter(), {0, 0, 0}); // temp asteroid at position of actual asteroid
 
-                            if (temp.doesIntersect(tem)) {
+                            if (temp.doesIntersect(tem)) { // if projectal intersects asteroid
 //                                cout << *stuff.at(index) << endl;
-                                stuff[index] = nullopt;
-                                allEnts.erase(allEnts.begin() + j);
-                                allEnts.erase(allEnts.begin() + i);
+                                stuff[index] = nullopt; // remove aseteroid info
+                                allEnts.erase(allEnts.begin() + j); // remove asteroid from game
+                                allEnts.erase(allEnts.begin() + i); // remove projectile from game
                             }
-                            ++index;
+                            ++index; // check at the next index
                         }
                     }
                 }
