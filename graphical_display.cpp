@@ -30,7 +30,7 @@ Button howPlay(howRect, "Click here for rules");
 vector<Entity*> allEnts;
 
 Rocket rocket(position2D::ZERO);
-PhysicsAspect p(&rocket, 5);
+PhysicsAspect phys(&rocket, 5);
 HyperSpace hyperspace(500, 5, 1200,600, Vector2D(600,300));
 
 const int ASTEROID_MAX_WIDTH = 35;
@@ -63,7 +63,7 @@ void init(int w, int h) {
     rocket = Rocket(Vector2D(w/2,h/2));
    //allEnts.push_back(&hyperspace);
     allEnts.push_back(&rocket);
-    allEnts.push_back(&p);
+    allEnts.push_back(&phys);
 
     auto darkGrayscale = colorGraphics::RGBGradient(RGBColor(.5, .5, .5), RGBColor(.07, .07, .07));
     for (int i = 0; i < 17; ++i) {
@@ -140,6 +140,7 @@ void display() {
 void keyboard(unsigned char key, int x, int y)
 {
     Projectile* p = nullptr;
+    double theta = 0;
     switch (key) {
         case 27:
             glutDestroyWindow(wd);
@@ -147,6 +148,8 @@ void keyboard(unsigned char key, int x, int y)
         case 32:
             p = rocket.shoot();
             allEnts.push_back(p);
+            theta = rocket.getCenter().rotationAngle * M_PI / 180;
+            phys.addForce(-Vector2D(cosf(theta),sinf(theta)));
             break;
         case 'h':
             screen = RULES;
@@ -302,9 +305,9 @@ void timer(int dummy) {
             }
 
             if (leftArrow) {
-                p.addForce(ROTATE_LEFT);
+                phys.addForce(ROTATE_LEFT);
             } else if (rightArrow) {
-                p.addForce(ROTATE_RIGHT);
+                phys.addForce(ROTATE_RIGHT);
             }
 
             if (accelerating) {
@@ -313,7 +316,7 @@ void timer(int dummy) {
                 double x = cosf(theta);
                 double y = sinf(theta);
 
-                p.addForce(Vector2D(x,y));
+                phys.addForce(Vector2D(x,y));
             } else {
                 rocket.stopAccelerating();
             }
@@ -344,7 +347,7 @@ int start(int argc, char** argv) {
     glutInitWindowSize((int)width, (int)height);
     glutInitWindowPosition(300, 300); // Position the window's initial top-left corner
     /* create the window and store the handle to it */
-    wd = glutCreateWindow("Test Graphics" /* title */ );
+    wd = glutCreateWindow("StarBoys: An Adventure Across Time" /* title */ );
 
     // Register callback handler for window re-paint event
     glutDisplayFunc(display);
