@@ -18,6 +18,8 @@ private:
     int rate;
     int increment;
 
+    Circle c;
+
     std::vector<StarBoi> starBois;
 
 public:

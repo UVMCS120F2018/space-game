@@ -8,7 +8,7 @@
 using namespace position2D;
 
 HyperSpace::HyperSpace(int particleNums, int particleRate, int boundsWidth, int boundsHeight,
-                       position2D::Vector2D point): Entity(point) {
+                       position2D::Vector2D point): Entity(point), c(5,point,colorGraphics::BLACK) {
     particles = particleNums;
     rate = particleRate;
     width = boundsWidth;
@@ -47,6 +47,9 @@ void HyperSpace::draw() {
     for (StarBoi &s: starBois) {
         s.draw();
     }
+
+    c.draw();
+
 
 }
 
