@@ -83,7 +83,7 @@ public:
     /* Change the color back when the user is not clicking/hovering */
     void release();
 
-    /* Execute whatever the Button is supposed to do */
+    /* Execute whatever the button is supposed to do */
     virtual void click(std::function<void()> callback);
 
     void move(int deltaX, int deltaY);

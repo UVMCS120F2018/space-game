@@ -31,7 +31,7 @@ vector<Entity*> allEnts;
 
 Rocket rocket(position2D::ZERO);
 PhysicsAspect p(&rocket, 5);
-HyperSpace hyperspace(500, 5, 500,500, Vector2D(250,250));
+HyperSpace hyperspace(500, 5, 1200,600, Vector2D(600,300));
 
 bool leftArrow = false;
 bool rightArrow = false;
@@ -324,14 +324,14 @@ void timer(int dummy) {
 /* Main function: GLUT runs as a console application starting at main()  */
 int start(int argc, char** argv) {
 
-    init(500,500);
+    init(1200,600);
 
     glutInit(&argc, argv);          // Initialize GLUT
 
     glutInitDisplayMode(GLUT_RGBA);
 
     glutInitWindowSize((int)width, (int)height);
-    glutInitWindowPosition(100, 200); // Position the window's initial top-left corner
+    glutInitWindowPosition(300, 300); // Position the window's initial top-left corner
     /* create the window and store the handle to it */
     wd = glutCreateWindow("Test Graphics" /* title */ );
 
