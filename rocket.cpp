@@ -63,12 +63,17 @@ void Rocket::draw() {
 
 Projectile* Rocket::shoot() {
 
-    if (ammo > 0) {
+    if (ammo > -1000) {
         double theta = getCenter().rotationAngle * M_PI / 180;
-        double x = cosf(theta);
-        double y = sinf(theta);
+
+        int xpos = getSide1() / 2;
+        int ypos = 0;
+
+
+        double x = (xpos * cosf(theta)) - (ypos * sinf(theta));
+        double y = (xpos * sinf(theta)) + (ypos * cosf(theta));
         position2D::Vector2D start(x + getCenter().x, y + getCenter().y);
-        position2D::Vector2D force(x, y);
+        position2D::Vector2D force(cosf(theta), sinf(theta));
 
 
         Circle c(5, start, colorGraphics::RED);

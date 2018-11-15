@@ -31,6 +31,10 @@ void InitGL();
 
 // Callback functions for GLUT
 
+
+// spawn asteroid func
+void spawnAsteroid(int numA);
+
 // Draw the window - this is where all the GL actions are
 void display();
 

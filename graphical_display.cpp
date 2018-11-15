@@ -66,8 +66,16 @@ void init(int w, int h) {
     allEnts.push_back(&rocket);
     allEnts.push_back(&phys);
 
+    spawnAsteroid(17);
+
+//    Asteroid rock(25, Vector2D(89, 73), colorGraphics::RGBColor(.7, .7, .7));
+
+//    allEnts.push_back(&rock);
+}
+
+void spawnAsteroid(int numA) {
     auto darkGrayscale = colorGraphics::RGBGradient(RGBColor(.5, .5, .5), RGBColor(.07, .07, .07));
-    for (int i = 0; i < 17; ++i) {
+    for (int i = 0; i < numA; ++i) {
         int radius = rand() % ASTEROID_MAX_WIDTH + ASTEROID_MIN_WIDTH;
         Asteroid* a = new Asteroid(radius, Vector2D(rand() % (int)width, rand() % (int)height), darkGrayscale.getColor());
         PhysicsAspect* pa = new PhysicsAspect(a, 5, Circle(a->getRadius(), a->getCenter(), colorGraphics::GREEN));
@@ -80,9 +88,6 @@ void init(int w, int h) {
 
     }
 
-//    Asteroid rock(25, Vector2D(89, 73), colorGraphics::RGBColor(.7, .7, .7));
-
-//    allEnts.push_back(&rock);
 }
 
 /* Initialize OpenGL Graphics */
@@ -157,6 +162,7 @@ void keyboard(unsigned char key, int x, int y)
         case 32:
             p = rocket.shoot();
             allEnts.push_back(p);
+            allEnts.emplace_back(new PhysicsAspect(p, 1, Circle(p->getRadius(),p->getCenter(), colorGraphics::GREEN)));
             theta = rocket.getCenter().rotationAngle * M_PI / 180;
             phys.addForce(-Vector2D(cosf(theta),sinf(theta)));
             break;
@@ -354,7 +360,7 @@ int start(int argc, char** argv) {
     glutInitDisplayMode(GLUT_RGBA);
 
     glutInitWindowSize((int)width, (int)height);
-    glutInitWindowPosition(300, 300); // Position the window's initial top-left corner
+    glutInitWindowPosition(100, 100); // Position the window's initial top-left corner
     /* create the window and store the handle to it */
     wd = glutCreateWindow("StarBoys: An Adventure Across Time" /* title */ );
 
