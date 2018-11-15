@@ -38,7 +38,7 @@ const int ASTEROID_MIN_WIDTH = 7;
 
 bool leftArrow = false;
 bool rightArrow = false;
-bool accellerating = false;
+bool accelerating = false;
 
 Screen screen = START;
 
@@ -175,7 +175,7 @@ void keyboardSpecial(int key, int x, int y) {
             //rocket.turn(ROTATE_RIGHT);
             break;
         case GLUT_KEY_UP:
-            accellerating = true;
+            accelerating = true;
             //rocket.translate(UP * 5);
             break;
     }
@@ -198,7 +198,7 @@ void keyboardSpecialDown(int key, int x, int y) {
             //rocket.turn(ROTATE_RIGHT);
             break;
         case GLUT_KEY_UP:
-            accellerating = false;
+            accelerating = false;
             break;
     }
 
@@ -307,7 +307,7 @@ void timer(int dummy) {
                 p.addForce(ROTATE_RIGHT);
             }
 
-            if (accellerating) {
+            if (accelerating) {
                 rocket.accelerateForward();
                 double theta = rocket.getCenter().rotationAngle * M_PI / 180;
                 double x = cosf(theta);
