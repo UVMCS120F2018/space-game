@@ -30,6 +30,12 @@ Button rulesB(rules, "The only rule is that there are no rules.");
 Button button(startRect, "Click here to Start");
 Button howPlay(howRect, "Click here for rules");
 
+Quad deadRect({0,1,0}, {600,100}, 150, 75);
+Button youDied(deadRect, "You Died");
+
+Quad againRect({0,1,0}, {600, 500}, 150, 100);
+Button again(againRect, "Play Again?");
+
 vector<Entity*> allEnts;
 vector<PhysicsAspect*> physAspects;
 vector<optional<int>> stuff; // vector keeps track of asteroid info. needed for destroying them with projectiles
@@ -38,8 +44,10 @@ Rocket rocket(position2D::ZERO);
 PhysicsAspect phys(&rocket, 5);
 HyperSpace hyperspace(500, 5, 1200,600, Vector2D(600,300));
 
+ParticleSystem explosion(500, 1, 50, 360, 10, 8, colorGraphics::FIRE, Vector2D(600, 300));
+
 const int ASTEROID_MAX_WIDTH = 35;
-const int ASTEROID_MIN_WIDTH = 7;
+const int ASTEROID_MIN_WIDTH = 20;
 
 
 bool leftArrow = false;
@@ -131,6 +139,9 @@ void display() {
 
         case END:
             //do end screen drawing
+            youDied.draw();
+            againRect.draw();
+            explosion.draw();
             break;
 
         case RULES:
@@ -252,6 +263,12 @@ void cursor(int x, int y) {
         goBack.hover();
     } else {
         goBack.release();
+    }
+
+    if (again.isOverlapping(x,y)) {
+        again.hover();
+    } else {
+        again.release();
     }
 
     glutPostRedisplay();
@@ -376,6 +393,7 @@ void timer(int dummy) {
 
         case END:
             //do end screen drawing
+            explosion.update();
             break;
 
         default:
