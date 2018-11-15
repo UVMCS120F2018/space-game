@@ -55,6 +55,8 @@ void init(int w, int h) {
     width = w;
     height = h;
 
+    srand(time(NULL));
+
     rocket = Rocket(Vector2D(w/2,h/2));
    //allEnts.push_back(&hyperspace);
     allEnts.push_back(&rocket);
