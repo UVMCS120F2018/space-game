@@ -34,7 +34,7 @@ Quad deadRect({0,1,0}, {600,100}, 150, 75);
 Button youDied(deadRect, "You Died");
 
 Quad againRect({0,1,0}, {600, 500}, 150, 100);
-Button again(againRect, "Play Again?");
+Button again(againRect, "Play Again");
 
 vector<Entity*> allEnts;
 vector<PhysicsAspect*> physAspects;
@@ -65,6 +65,13 @@ void getRules() {
 void startScreen() {
     screen = START;
 }
+
+void reset() {
+    rocket.setPosition(Vector2D(width/2,height/2));
+    spawnAsteroid(10);
+    startScreen();
+}
+
 void doNothing() {}
 
 
@@ -140,7 +147,7 @@ void display() {
         case END:
             //do end screen drawing
             youDied.draw();
-            againRect.draw();
+            again.draw();
             explosion.draw();
             break;
 
@@ -321,6 +328,23 @@ void mouseClicked(int b, int state, int x, int y) {
         goBack.isOverlapping(x, y)) {
         goBack.click(startScreen);
     }
+
+    /* Play again button */
+    if (state == GLUT_DOWN &&
+        b == GLUT_LEFT_BUTTON &&
+        again.isOverlapping(x, y)) {
+        again.pressDown();
+    } else {
+        again.release();
+    }
+
+    if (state == GLUT_UP &&
+        b == GLUT_LEFT_BUTTON &&
+        again.isOverlapping(x, y)) {
+        again.click(reset);
+    }
+
+
 
     glutPostRedisplay();
 }
