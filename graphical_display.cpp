@@ -7,20 +7,19 @@
 #include "hyperspace.h"
 #include "button.h"
 #include "asteroid.h"
+#include <experimental/optional>
 
 using namespace position2D;
 using namespace colorGraphics;
 using namespace std;
+using namespace experimental;
 
 
 GLdouble width, height;
 int wd;
 
 enum Screen {START, GAME, HYPERSPACE, END, RULES};
-struct asteroidStuff{
-    int radius;
-    unsigned long num;
-};
+
 
 Quad startRect({0, 1, 0}, {600, 200}, 200, 100);
 Quad howRect({0, 1, 0}, {600, 400}, 200, 100);
@@ -33,7 +32,7 @@ Button howPlay(howRect, "Click here for rules");
 
 vector<Entity*> allEnts;
 vector<PhysicsAspect*> physAspects;
-vector<asteroidStuff> stuff;
+vector<optional<int>> stuff;
 
 Rocket rocket(position2D::ZERO);
 PhysicsAspect phys(&rocket, 5);
@@ -75,9 +74,6 @@ void init(int w, int h) {
 
     spawnAsteroid(17);
 
-//    Asteroid rock(25, Vector2D(89, 73), colorGraphics::RGBColor(.7, .7, .7));
-
-//    allEnts.push_back(&rock);
 }
 
 void spawnAsteroid(int numA) {
@@ -92,9 +88,7 @@ void spawnAsteroid(int numA) {
         allEnts.emplace_back(pa);
         physAspects.emplace_back(pa);
 
-        cout << "ents size" << allEnts.size() << endl;
-        stuff.push_back({radius, allEnts.size()});
-        cout << "stuff size" << stuff.size() << endl;
+        stuff.push_back(radius);
     }
 
 }
@@ -171,14 +165,13 @@ void keyboard(unsigned char key, int x, int y)
         case 32:
 
             p = rocket.shoot();
-            //allEnts.push_back(p);
             allEnts.emplace_back(new PhysicsAspect(p, 1, Circle(p->getRadius(),p->getCenter(), colorGraphics::GREEN)));
             ++sub;
             theta = rocket.getCenter().rotationAngle * M_PI / 180;
             phys.addForce(-Vector2D(cosf(theta),sinf(theta)));
             allEnts.insert(allEnts.begin(), p);
-          ++sub;
-//  allEnts.push_back(p);
+            ++sub;
+
             break;
         case 'h':
             screen = RULES;
@@ -357,22 +350,24 @@ void timer(int dummy) {
             for (int i = 0; i < allEnts.size(); ++i) {
                 std::string eString = allEnts[i]->toString();
                 int r = 0;
+                int index = 0;
                 if (eString == "projectile") {
                     Projectile temp(allEnts[i]->getCenter(), {0, 0});
                     for (int j = i; j < allEnts.size(); ++j) {
                         std::string eString2 = allEnts[j]->toString();
                         if (eString2 == "asteroid") {
-//                            for (int k = 0; k < stuff.size(); ++k) {
-////                                cout << stuff.at(k).num << endl;
-//                                if (j == stuff.at(k).num) {
-//                                    r = stuff.at(k).radius;
-//                                }
-//                            }
-                            Asteroid tem(/*stuff.at(j-stuff.size()-sub).radius */ ASTEROID_MAX_WIDTH, allEnts[j]->getCenter(), {0, 0, 0});
+                            if(!stuff.at(index)){
+                                ++index;
+                            }
+                            Asteroid tem(*stuff.at(index), allEnts[j]->getCenter(), {0, 0, 0});
+
                             if (temp.doesIntersect(tem)) {
+//                                cout << *stuff.at(index) << endl;
+                                stuff[index] = nullopt;
                                 allEnts.erase(allEnts.begin() + j);
                                 allEnts.erase(allEnts.begin() + i);
                             }
+                            ++index;
                         }
                     }
                 }
