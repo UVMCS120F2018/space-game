@@ -309,6 +309,11 @@ void timer(int dummy) {
 
             if (accellerating) {
                 rocket.accelerateForward();
+                double theta = rocket.getCenter().rotationAngle * M_PI / 180;
+                double x = cosf(theta);
+                double y = sinf(theta);
+
+                p.addForce(Vector2D(x,y));
             } else {
                 rocket.stopAccelerating();
             }
