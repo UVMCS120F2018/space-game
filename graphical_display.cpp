@@ -32,7 +32,6 @@ vector<Entity*> allEnts;
 Rocket rocket(position2D::ZERO);
 PhysicsAspect p(&rocket, 5);
 HyperSpace hyperspace(500, 5, 500,500, Vector2D(250,250));
-Asteroid rock(25, Vector2D(89, 73), colorGraphics::RGBColor(.7, .7, .7));
 
 bool leftArrow = false;
 bool rightArrow = false;
@@ -60,7 +59,15 @@ void init(int w, int h) {
    //allEnts.push_back(&hyperspace);
     allEnts.push_back(&rocket);
     allEnts.push_back(&p);
-    allEnts.push_back(&rock);
+
+    auto darkGreyscale = colorGraphics::RGBGradient(RGBColor(.5, .5, .5), RGBColor(1, 1, 1));
+    for (int i = 0; i < 10; ++i) {
+        allEnts.emplace_back(new Asteroid(rand() % 35 + 7, Vector2D(rand() % (int)width, rand() % (int)height), darkGreyscale.getColor()));
+    }
+
+//    Asteroid rock(25, Vector2D(89, 73), colorGraphics::RGBColor(.7, .7, .7));
+
+//    allEnts.push_back(&rock);
 }
 
 /* Initialize OpenGL Graphics */
