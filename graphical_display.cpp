@@ -33,6 +33,9 @@ Rocket rocket(position2D::ZERO);
 PhysicsAspect p(&rocket, 5);
 HyperSpace hyperspace(500, 5, 500,500, Vector2D(250,250));
 
+const int ASTEROID_MAX_WIDTH = 35;
+const int ASTEROID_MIN_WIDTH = 7;
+
 bool leftArrow = false;
 bool rightArrow = false;
 bool accellerating = false;
@@ -55,16 +58,17 @@ void init(int w, int h) {
     width = w;
     height = h;
 
-    srand(time(NULL));
+    srand(time(nullptr));
 
     rocket = Rocket(Vector2D(w/2,h/2));
    //allEnts.push_back(&hyperspace);
     allEnts.push_back(&rocket);
     allEnts.push_back(&p);
 
-    auto darkGreyscale = colorGraphics::RGBGradient(RGBColor(.5, .5, .5), RGBColor(1, 1, 1));
-    for (int i = 0; i < 10; ++i) {
-        allEnts.emplace_back(new Asteroid(rand() % 35 + 7, Vector2D(rand() % (int)width, rand() % (int)height), darkGreyscale.getColor()));
+    auto darkGrayscale = colorGraphics::RGBGradient(RGBColor(.5, .5, .5), RGBColor(.07, .07, .07));
+    for (int i = 0; i < 17; ++i) {
+        int radius = rand() % ASTEROID_MAX_WIDTH + ASTEROID_MIN_WIDTH;
+        allEnts.emplace_back(new Asteroid(radius, Vector2D(rand() % (int)width, rand() % (int)height), darkGrayscale.getColor()));
     }
 
 //    Asteroid rock(25, Vector2D(89, 73), colorGraphics::RGBColor(.7, .7, .7));
