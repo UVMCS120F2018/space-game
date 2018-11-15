@@ -23,7 +23,7 @@ Quad howRect({0, 1, 0}, {600, 400}, 200, 100);
 Quad rules({0, 1, 0}, {600, 250}, 400, 100);
 Quad back({0, 1, 0}, {600, 450}, 80, 30);
 Button goBack(back, "Go back");
-Button rulesB(rules, "The only rules are there are no rules");
+Button rulesB(rules, "The only rule is that there are no rules.");
 Button button(startRect, "Click here to Start");
 Button howPlay(howRect, "Click here for rules");
 
