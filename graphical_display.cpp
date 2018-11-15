@@ -42,6 +42,8 @@ HyperSpace hyperspace(500, 5, 1200,600, Vector2D(600,300));
 const int ASTEROID_MAX_WIDTH = 35;
 const int ASTEROID_MIN_WIDTH = 7;
 
+int sub = 3;
+
 bool leftArrow = false;
 bool rightArrow = false;
 bool accelerating = false;
@@ -90,7 +92,9 @@ void spawnAsteroid(int numA) {
         allEnts.emplace_back(pa);
         physAspects.emplace_back(pa);
 
+        cout << "ents size" << allEnts.size() << endl;
         stuff.push_back({radius, allEnts.size()});
+        cout << "stuff size" << stuff.size() << endl;
     }
 
 }
@@ -165,21 +169,26 @@ void keyboard(unsigned char key, int x, int y)
             glutDestroyWindow(wd);
             exit(0);
         case 32:
+
             p = rocket.shoot();
             //allEnts.push_back(p);
             allEnts.emplace_back(new PhysicsAspect(p, 1, Circle(p->getRadius(),p->getCenter(), colorGraphics::GREEN)));
+            ++sub;
             theta = rocket.getCenter().rotationAngle * M_PI / 180;
             phys.addForce(-Vector2D(cosf(theta),sinf(theta)));
             allEnts.insert(allEnts.begin(), p);
-//            allEnts.push_back(p);
+          ++sub;
+//  allEnts.push_back(p);
             break;
         case 'h':
             screen = RULES;
             break;
         case 13:
             screen = GAME;
+            break;
         case 'q':
             screen = END;
+            break;
         default:
             break;
     }
@@ -359,9 +368,10 @@ void timer(int dummy) {
 //                                    r = stuff.at(k).radius;
 //                                }
 //                            }
-                            Asteroid tem( /*stuff.at(j-stuff.size()).radius*/ ASTEROID_MAX_WIDTH, allEnts[j]->getCenter(), {0, 0, 0});
+                            Asteroid tem(/*stuff.at(j-stuff.size()-sub).radius */ ASTEROID_MAX_WIDTH, allEnts[j]->getCenter(), {0, 0, 0});
                             if (temp.doesIntersect(tem)) {
                                 allEnts.erase(allEnts.begin() + j);
+                                allEnts.erase(allEnts.begin() + i);
                             }
                         }
                     }
