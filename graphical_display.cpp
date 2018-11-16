@@ -115,8 +115,8 @@ void spawnAsteroid(int numA) {
 
 
     auto darkGrayscale = colorGraphics::RGBGradient(RGBColor(.5, .5, .5), RGBColor(.07, .07, .07));
-    int w = width / 2;
-    int h = height / 2;
+    int cw = width / 2;
+    int ch = height / 2;
 
     for (int i = 0; i < numA; ++i) {
         int radius = rand() % ASTEROID_MAX_WIDTH + ASTEROID_MIN_WIDTH;
@@ -125,7 +125,7 @@ void spawnAsteroid(int numA) {
         do {
             x = rand() % (int)width;
             y = rand() % (int)height;
-        } while((x < w + 50 and x > w - 50) and (y < h + 50 and y > h - 50));
+        } while((x < cw + 100 and x > cw - 100) and (y < ch + 100 and y > ch - 100));
 
         double xV = ((rand() % 100) - 50) / 20 ;
         double yV = ((rand() % 100) - 50) / 20;
