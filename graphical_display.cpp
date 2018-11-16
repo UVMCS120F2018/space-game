@@ -377,7 +377,8 @@ void timer(int dummy) {
 
             if (leftArrow) {
                 phys.addForce(ROTATE_LEFT);
-            } else if (rightArrow) {
+            }
+            if (rightArrow) {
                 phys.addForce(ROTATE_RIGHT);
             }
 
@@ -439,7 +440,7 @@ void timer(int dummy) {
             hyperspace.update();
             if (hyperspaceTimer < 0) {
                 hyperspaceTimer = 200;
-                spawnAsteroid(10);
+                spawnAsteroid(14);
                 rocket.setPosition(Vector2D(width/2,height/2));
                 phys.setVelocity(ZERO);
                 screen = GAME;
