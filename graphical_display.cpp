@@ -127,7 +127,10 @@ void spawnAsteroid(int numA) {
             y = rand() % (int)height;
         } while((x < w + 50 and x > w - 50) and (y < h + 50 and y > h - 50));
 
-        Asteroid* a = new Asteroid(radius, Vector2D(x, y), darkGrayscale.getColor());
+        double xV = ((rand() % 100) - 50) / 20 ;
+        double yV = ((rand() % 100) - 50) / 20;
+
+        Asteroid* a = new Asteroid(radius, Vector2D(x, y), darkGrayscale.getColor(), Vector2D(xV,yV));
 //        PhysicsAspect* pa = new PhysicsAspect(a, 5, Circle(a->getRadius(), a->getCenter(), colorGraphics::GREEN));
 //        pa->addForce(Vector2D(rand() % 2 - 1, rand() % 2 - 1));
 
@@ -434,7 +437,7 @@ void timer(int dummy) {
                             if(!stuff.at(index)){ // if asteroid has already been destoryed, incremet index
                                 ++index;
                             }
-                            Asteroid tem(*stuff.at(index), allEnts[j]->getCenter(), {0, 0, 0}); // temp asteroid at position of actual asteroid
+                            Asteroid tem(*stuff.at(index), allEnts[j]->getCenter(), {0, 0, 0}, ZERO); // temp asteroid at position of actual asteroid
 
                             if (temp.doesIntersect(tem)) { // if projectal intersects asteroid
 //                                cout << *stuff.at(index) << endl;
@@ -460,7 +463,7 @@ void timer(int dummy) {
                             if(!stuff.at(index)){ // if asteroid has already been destoryed, incremet index
                                 ++index;
                             }
-                            Asteroid tem(*stuff.at(index), allEnts[j]->getCenter(), {0, 0, 0}); // temp asteroid at position of actual asteroid
+                            Asteroid tem(*stuff.at(index), allEnts[j]->getCenter(), {0, 0, 0}, ZERO); // temp asteroid at position of actual asteroid
 
                             if (temp.doesIntersect(tem)) { // if rocket intersects asteroid
                                 screen = END;
