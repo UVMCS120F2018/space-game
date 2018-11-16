@@ -96,10 +96,38 @@ void init(int w, int h) {
 }
 
 void spawnAsteroid(int numA) {
+    // Clear asteroids
+    vector<int> pos;
+    for (int i = 0; i < allEnts.size(); ++i) {
+        // see if this entity is a projectile
+        std::string eString = allEnts[i]->toString();
+        int index = 0; // index for accessing things from asteroid info vector
+        if (eString == "asteroid") {
+               pos.insert(pos.begin(), i);
+        }
+    }
+    for (int i: pos) {
+        allEnts.erase(allEnts.begin() + i);
+    }
+
+
+
+
+
     auto darkGrayscale = colorGraphics::RGBGradient(RGBColor(.5, .5, .5), RGBColor(.07, .07, .07));
+    int w = width / 2;
+    int h = height / 2;
+
     for (int i = 0; i < numA; ++i) {
         int radius = rand() % ASTEROID_MAX_WIDTH + ASTEROID_MIN_WIDTH;
-        Asteroid* a = new Asteroid(radius, Vector2D(rand() % (int)width, rand() % (int)height), darkGrayscale.getColor());
+        int x = 0,y = 0;
+
+        do {
+            x = rand() % (int)width;
+            y = rand() % (int)height;
+        } while((x < w + 50 and x > w - 50) and (y < h + 50 and y > h - 50));
+
+        Asteroid* a = new Asteroid(radius, Vector2D(x, y), darkGrayscale.getColor());
 //        PhysicsAspect* pa = new PhysicsAspect(a, 5, Circle(a->getRadius(), a->getCenter(), colorGraphics::GREEN));
 //        pa->addForce(Vector2D(rand() % 2 - 1, rand() % 2 - 1));
 
@@ -454,7 +482,8 @@ void timer(int dummy) {
             break;
 
         case END:
-            //do end screen drawing
+            //do end screen drawin
+            phys.setVelocity(ZERO);
             explosion.update();
             break;
 
