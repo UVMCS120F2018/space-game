@@ -87,7 +87,6 @@ void PhysicsAspect::setEnergyAndMomentum() {
     kineticEnergy = momentum * velocity;
 }
 
-
 bool operator ==(PhysicsAspect &lhs, PhysicsAspect &rhs) {
     return (lhs.index == rhs.index);
 }

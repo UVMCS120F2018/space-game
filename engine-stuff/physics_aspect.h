@@ -57,7 +57,6 @@ public:
 
     void setEnergyAndMomentum();
 
-
     friend bool operator ==(PhysicsAspect &lhs, PhysicsAspect &rhs);
 };
 
