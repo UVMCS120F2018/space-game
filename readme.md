@@ -31,4 +31,4 @@ Explore! Destroy! Be Destroyed! Repeat!
 Most buttons are clickable (On start menu, help menu, and end screen). Buttons typically serve to transition between screens.
 
 **Inspiration?:**
-
+We loved the idea of a small sandbox game in which the player can jet around in space and shoot some asteroids as stress relief. One of our team members had some starter code for a similar concept from earlier projects, but that code served mostly as a conceptual starting point upon which we built a completely new product.
