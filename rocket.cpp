@@ -61,6 +61,10 @@ void Rocket::draw() {
     leftThruster.draw();
 }
 
+std::string Rocket::toString() {
+    return "rocket";
+}
+
 Projectile* Rocket::shoot() {
 
     if (ammo > -1000) {

@@ -37,6 +37,7 @@ public:
 
     void draw() override;
     void update() override;
+    std::string toString() override;
 
     Projectile* shoot();
 };

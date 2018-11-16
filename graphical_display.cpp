@@ -419,6 +419,29 @@ void timer(int dummy) {
                     }
                 }
             }
+
+            /* another crazy loop for rocket collision detection */
+            for (int i = 0; i < allEnts.size(); ++i) {
+                std::string rString = allEnts[i]->toString();
+                int index = 0; // index for accessing things from asteroid info vector
+                if (rString == "rocket"){
+                    Circle temp(5, allEnts[i]->getCenter(), {0,0,0});
+                    for (int j = i; j < allEnts.size(); ++j) {
+                        std::string aString = allEnts[j]->toString(); // see if there are other asteroids
+                        if (aString == "asteroid") {
+                            if(!stuff.at(index)){ // if asteroid has already been destoryed, incremet index
+                                ++index;
+                            }
+                            Asteroid tem(*stuff.at(index), allEnts[j]->getCenter(), {0, 0, 0}); // temp asteroid at position of actual asteroid
+
+                            if (temp.doesIntersect(tem)) { // if rocket intersects asteroid
+                                screen = END;
+                            }
+                            ++index; // check at the next index
+                        }
+                    }
+                }
+            }
         }
 
 
