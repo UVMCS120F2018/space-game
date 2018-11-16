@@ -36,6 +36,9 @@ Button youDied(deadRect, "You Died");
 Quad againRect({0,1,0}, {600, 500}, 150, 100);
 Button again(againRect, "Play Again");
 
+Quad warpRect({0,1,0}, {600,300}, 250,75);
+Button warp(warpRect, "Warping through Hyperspace");
+
 vector<Entity*> allEnts;
 vector<PhysicsAspect*> physAspects;
 vector<optional<int>> stuff; // vector keeps track of asteroid info. needed for destroying them with projectiles
@@ -45,6 +48,8 @@ PhysicsAspect phys(&rocket, 5);
 HyperSpace hyperspace(500, 5, 1200,600, Vector2D(600,300));
 
 ParticleSystem explosion(500, 1, 50, 360, 10, 8, colorGraphics::FIRE, Vector2D(600, 300));
+
+int hyperspaceTimer = 200;
 
 const int ASTEROID_MAX_WIDTH = 35;
 const int ASTEROID_MIN_WIDTH = 20;
@@ -156,7 +161,9 @@ void display() {
             goBack.draw(4, 3);
             break;
 
-        default:
+        case HYPERSPACE:
+            hyperspace.draw();
+            warp.draw();
             break;
     }
     /*
@@ -436,11 +443,30 @@ void timer(int dummy) {
             }
         }
 
+
+        if (rocket.getCenter().x < 0 || rocket.getCenter().x > width) {
+            screen = HYPERSPACE;
+        } else if (rocket.getCenter().y < 0 || rocket.getCenter().y > height) {
+            screen = HYPERSPACE;
+        }
+
             break;
 
         case END:
             //do end screen drawing
             explosion.update();
+            break;
+
+        case HYPERSPACE:
+            hyperspaceTimer--;
+            hyperspace.update();
+            if (hyperspaceTimer < 0) {
+                hyperspaceTimer = 200;
+                spawnAsteroid(10);
+                rocket.setPosition(Vector2D(width/2,height/2));
+                phys.setVelocity(ZERO);
+                screen = GAME;
+            }
             break;
 
         default:
